@@ -1,3 +1,6 @@
+/**
+ * 周天气对象
+ */
 function weekTemps () {
   let self = this
   self.dataStore = []
@@ -5,10 +8,18 @@ function weekTemps () {
   self.average = average
 }
 
+/**
+ * 添加温度
+ * @param { Number } temp 温度
+ */
 function add (temp) {
   let self = this
   self.dataStore.push(temp)
 }
+
+/**
+ * 求平均值
+*/
 function average () {
   let self = this
   let total = 0
@@ -18,7 +29,7 @@ function average () {
   return total / self.dataStore.length
 }
 
-console.log(thisWeek.average())
+let thisWeek = new weekTemps()
 thisWeek.add(52)
 thisWeek.add(55)
 thisWeek.add(61)

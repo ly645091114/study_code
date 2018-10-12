@@ -4,6 +4,12 @@ for (let i = 0; i < rows; ++i) {
   twod[i] = []
 }
 
+/**
+ * 初始化一个二位数组
+ * @param { Number } numrows 列数
+ * @param { Number } numcols 行数
+ * @param { Number } initial 初始值
+ */
 Array.matrix = (numrows, numcols, initial) => {
   let arr = []
   for (let i = 0; i < numrows; ++i) {
@@ -17,4 +23,4 @@ Array.matrix = (numrows, numcols, initial) => {
 }
 
 let nums = Array.matrix(5, 5, 0)
-console.log(nums[3][4])
+console.log(nums)
