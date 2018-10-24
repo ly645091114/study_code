@@ -34,3 +34,4 @@ fs.createReadStream('input.txt.gz')
   .pipe(fs.createWriteStream('gzip.txt'))
 
   console.log('文件解压完成')
+  
