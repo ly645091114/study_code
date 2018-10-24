@@ -41,7 +41,7 @@ function append (element) {
 function find (element) {
   let self = this
   let res = -1
-  self.dataStore.map((item , index) => {
+  self.dataStore.forEach((item , index) => {
     if (item === element) {
       res = index
     }
@@ -112,7 +112,7 @@ function clear () {
  */
 function contains (element) {
   let self = this
-  let res = self.find()
+  let res = self.find(element)
   return res > -1
 }
 
