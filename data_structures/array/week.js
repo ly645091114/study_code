@@ -23,7 +23,7 @@ function add (temp) {
 function average () {
   let self = this
   let total = 0
-  self.dataStore.map((item) => {
+  self.dataStore.forEach((item) => {
     total += item
   })
   return total / self.dataStore.length
