@@ -1,11 +1,11 @@
 /**
  * 栈元素测试
  */
-let { Stack } = require('./stack.js')
-let { mulBase } = require('./number-system.js')
-let { isPalindrome } = require('./palindrome.js')
-let { recursion } = require('./recursion.js')
-let { brackets } = require('./brackets.js')
+const { Stack } = require('./stack.js')
+const { mulBase } = require('./number-system.js')
+const { isPalindrome } = require('./palindrome.js')
+const { recursion } = require('./recursion.js')
+const { brackets } = require('./brackets.js')
 let s = new Stack()
 s.push('谢宋伟')
 s.push('黄城')

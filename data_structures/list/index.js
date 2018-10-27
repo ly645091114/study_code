@@ -1,7 +1,7 @@
 /**
  * 关于列表的一些使用用例
  */
-let { List } = require('./list.js')
+const { List } = require('./list.js')
 let names = new List()
 names.append('nrf')
 names.append('dqf')

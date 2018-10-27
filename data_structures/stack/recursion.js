@@ -1,4 +1,4 @@
-let { Stack } = require('./stack.js')
+const { Stack } = require('./stack.js')
 /**
  * 使用栈实现阶乘 （递归）
  * @param { Number } num 阶乘数

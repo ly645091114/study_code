@@ -1,4 +1,4 @@
-let { Stack } = require('./stack.js')
+const { Stack } = require('./stack.js')
 /**
  * 该方法，通过栈的形式，实现了十进制数制的转换，但仅限于基数为 2 ~ 9的数制
  * @param { Number } num 十进制数

@@ -1,4 +1,4 @@
-let { Stack } = require('./stack.js')
+const { Stack } = require('./stack.js')
 /**
  * 使用栈判断一个算术表达式中的括号是否匹配
  * @param { String } str 算术表达式

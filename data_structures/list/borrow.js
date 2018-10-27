@@ -1,6 +1,6 @@
-let { List } = require('./list.js')
-let { Customer } = require('./customer.js')
-let fs = require('fs')
+const { List } = require('./list.js')
+const { Customer } = require('./customer.js')
+const fs = require('fs')
 /**
  * 从本地文件中获取，文件列表，通过换行符将其切分成数组
  * 再通过 trim() 去除首尾空格

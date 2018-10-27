@@ -47,10 +47,15 @@
     - `stack` 栈
       - `brackets.js` 栈应用 （算术表达式中的括号是否匹配）
       - `index.js` 栈功能测试
-      - `number-system.txt` 栈应用 （数制转换）
+      - `number-system.js` 栈应用 （数制转换）
       - `palindrome.js` 栈应用 （回文判断）
       - `recursion.ks` 栈应用 （阶乘）
       - `stack.js` 栈基础
+    - `queue` 队列
+      - `dance.js` 队列应用 （方块舞的舞伴分配）
+      - `index.js` 队列功能测试
+      - `member-list.txt` 成员文本
+      - `queue.js` 队列基础
   - `ES6`
   - `node`
   - `README.md`
