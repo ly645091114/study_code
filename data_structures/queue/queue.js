@@ -11,6 +11,7 @@ function Queue () {
   this.back = back
   this.toString = toString
   this.empty = empty
+  this.count = count
 }
 /**
  * 入队操作，即向队尾添加一个元素
@@ -56,6 +57,13 @@ function toString () {
  */
 function empty () {
   return this.dataStore.length === 0
+}
+/**
+ * 队列长度方法
+ * @return { Number } 队列长度
+ */
+function count () {
+  return this.dataStore.length
 }
 
 exports.Queue = Queue
