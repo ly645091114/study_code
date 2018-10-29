@@ -55,6 +55,7 @@
       - `dance.js` 队列应用 （方块舞的舞伴分配）
       - `index.js` 队列功能测试
       - `member-list.txt` 成员文本
+      - `priority-queue.js` 队列应用 （优先队列）
       - `queue.js` 队列基础
       - `sort.js` 队列应用 （基数排序）
   - `ES6`
