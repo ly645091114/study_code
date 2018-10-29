@@ -12,6 +12,8 @@ function Queue () {
   this.toString = toString
   this.empty = empty
   this.count = count
+  this.pdequeue = pdequeue
+  this.ptoString = ptoString
 }
 /**
  * 入队操作，即向队尾添加一个元素
@@ -25,6 +27,21 @@ function enqueue (element) {
  */
 function dequeue () {
   this.dataStore.shift()
+}
+/**
+ * 优先队列出队操作
+ * 元素越小优先级越高
+ */
+function pdequeue () {
+  let entry = 0
+  this.dataStore.forEach((item, index) => {
+    if (item.code < this.dataStore[entry].code) {
+      entry = index
+    }
+  })
+  let reStr = this.dataStore[entry]
+  this.dataStore.splice(entry, 1)
+  return reStr
 }
 /**
  * 读取队首元素
@@ -48,6 +65,16 @@ function toString () {
   let reStr = ''
   this.dataStore.forEach((item) => {
     reStr += `${item}\n`
+  })
+  return reStr
+}
+/**
+ * 优先队列输出
+ */
+function ptoString () {
+  let reStr = ''
+  this.dataStore.forEach((item) => {
+    reStr += `${item.name} code: ${item.code}\n`
   })
   return reStr
 }
