@@ -44,6 +44,15 @@
       - `films.txt` 影碟列表文本
       - `index.js` 列表功能测试
       - `list.js` 列表基础
+    - `queue` 队列
+      - `dance.js` 队列应用 （方块舞的舞伴分配）
+      - `deque.js` 双向队列基础
+      - `index.js` 队列功能测试
+      - `member-list.txt` 成员文本
+      - `palindrome.js` 双向队列应用 （回文判断）
+      - `priority-queue.js` 队列应用 （优先队列）
+      - `queue.js` 队列基础
+      - `sort.js` 队列应用 （基数排序）
     - `stack` 栈
       - `brackets.js` 栈应用 （算术表达式中的括号是否匹配）
       - `index.js` 栈功能测试
@@ -51,13 +60,6 @@
       - `palindrome.js` 栈应用 （回文判断）
       - `recursion.ks` 栈应用 （阶乘）
       - `stack.js` 栈基础
-    - `queue` 队列
-      - `dance.js` 队列应用 （方块舞的舞伴分配）
-      - `index.js` 队列功能测试
-      - `member-list.txt` 成员文本
-      - `priority-queue.js` 队列应用 （优先队列）
-      - `queue.js` 队列基础
-      - `sort.js` 队列应用 （基数排序）
   - `ES6`
   - `node`
   - `README.md`

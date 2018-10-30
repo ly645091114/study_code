@@ -5,6 +5,7 @@ const { Queue } = require('./queue.js')
 const { getDancers, dance } = require('./dance.js')
 const { distrbute, collect, dispArray } = require('./sort.js')
 const { Patient } = require('./priority-queue.js')
+const { isPalindrome } = require('./palindrome.js')
 let q = new Queue()
 q.enqueue('谢宋伟')
 q.enqueue('黄城')
@@ -74,3 +75,10 @@ goon = ed.pdequeue()
 console.log(`${goon.name}已出队`)
 console.log(`等候用户：`)
 console.log(ed.ptoString())
+/**
+ * 双向队列判断回文
+ */
+let str = 'raecear'
+console.log(`文本 ${str} ${isPalindrome(str) ? '是' : '不是'}回文`)
+str = 'rabcear'
+console.log(`文本 ${str} ${isPalindrome(str) ? '是' : '不是'}回文`)
