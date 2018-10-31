@@ -4,8 +4,6 @@
  * 所以需要一个优先队列的数据结构来模拟
  * 优先队列的方法在 queue.js 文件中的
  * pdequeue () 方法
- */
-/**
  * 定义存储队列元素的对象，然后再构建我们的优先队列
  * @param { String } name 名字
  * @param { Number } code 优先级

@@ -44,6 +44,9 @@
       - `films.txt` 影碟列表文本
       - `index.js` 列表功能测试
       - `list.js` 列表基础
+    - `llist` 链表
+      - `index.js` 链表功能测试
+      - `llist.js` 链表基础
     - `queue` 队列
       - `dance.js` 队列应用 （方块舞的舞伴分配）
       - `deque.js` 双向队列基础
