@@ -20,6 +20,10 @@ function DlList () {
   this.remove = remove
   this.findLast = findLast
   this.dispReverse = dispReverse
+  this.advance = advance
+  this.currentNode = this.head
+  this.back = back
+  this.show = show
 }
 /**
  * 查找方法，遍历链表查找数据
@@ -90,5 +94,32 @@ function dispReverse () {
     console.log(currNode.element)
     currNode = currNode.previous
   }
+}
+/**
+ * 向前移动节点
+ * @param { Number } n 移动次数
+ */
+function advance (n) {
+  while ((n > 0) && !(this.currentNode.next === null)) {
+    this.currentNode = this.currentNode.next
+    n--
+  }
+}
+/**
+ * 向后移动节点
+ * @param { Number } n 移动次数
+ */
+function back (n) {
+  while ((n > 0) && !(this.currentNode.element === 'head')) {
+    this.currentNode = this.currentNode.previous
+    n--
+  }
+}
+/**
+ * 显示当前节点
+ * @return { Any } 当前节点元素
+ */
+function show () {
+  console.log(this.currentNode.element)
 }
 exports.DlList = DlList
