@@ -49,6 +49,7 @@
       - `dllist.js` 双向链表基础
       - `index.js` 链表功能测试
       - `llist.js` 链表基础
+      - `rlist.js` 循环链表基础
     - `queue` 队列
       - `dance.js` 队列应用 （方块舞的舞伴分配）
       - `deque.js` 双向队列基础
