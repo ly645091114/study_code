@@ -48,6 +48,7 @@
     - `llist` 链表
       - `dllist.js` 双向链表基础
       - `index.js` 链表功能测试
+      - `josephus.js` 循环链表应用 （约瑟夫环）
       - `llist.js` 链表基础
       - `rlist.js` 循环链表基础
     - `queue` 队列
