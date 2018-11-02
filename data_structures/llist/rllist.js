@@ -8,6 +8,7 @@ function Node (element) {
   this.next = null
   this.previous = null
 }
+
 /**
  * 链表构造函数
  * 这里 head 节点的 next 属性被初始化为 null, 当有新元素插入时, next 会指向新的元素, 所以在这里我们没有修改 next 的值
@@ -26,6 +27,7 @@ function RlList () {
   this.back = back
   this.show = show
 }
+
 /**
  * 查找方法，遍历链表查找数据
  * @param { Any } element 查找元素
@@ -38,6 +40,7 @@ function find (element) {
   }
   return currNode
 }
+
 /**
  * 将新节点插入链表
  * @param { Object } newElement 新节点
@@ -50,6 +53,7 @@ function insert (newElement, element) {
   newNode.previous = current
   current.next = newNode
 }
+
 /**
  * 显示链表中的元素
  */
@@ -60,6 +64,7 @@ function display () {
     currNode = currNode.next
   }
 }
+
 /**
  * 删除节点, 需要先找到待删除节点前面的节点, 找到这个节点后, 修改它的 next 属性, 使其不再指向待删除节点
  * 而是指向待删除节点的下一节点
@@ -72,6 +77,7 @@ function remove (element) {
     currNode.next.previous = currNode.previous
   } 
 }
+
 /**
  * 获取链表长度
  */
@@ -84,6 +90,7 @@ function count () {
   }
   return i
 }
+
 /**
  * 向前移动节点, 循环链表需要跳过头节点
  * @param { Number } n 移动次数
@@ -97,6 +104,7 @@ function advance (n) {
     n--
   }
 }
+
 /**
  * 向后移动节点, 循环链表需要跳过头节点
  * @param { Number } n 移动次数
@@ -110,6 +118,7 @@ function back (n) {
     n--
   }
 }
+
 /**
  * 显示当前节点
  * @return { Any } 当前节点元素

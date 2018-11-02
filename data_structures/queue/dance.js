@@ -10,6 +10,7 @@ function Dancer (name, sex) {
   this.name = name
   this.sex = sex
 }
+
 /**
  * 将舞者信息从文件中读取出来
  * @param { Object } males 男性队列
@@ -32,6 +33,7 @@ function getDancers (males, females) {
     }
   })
 }
+
 /**
  * 将男性和女性组成舞伴，并宣布结果
  * @param { Object } males 男性队列

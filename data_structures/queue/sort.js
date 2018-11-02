@@ -21,6 +21,7 @@ function distrbute (nums, queues, digit) {
     }
   })
 }
+
 /**
  * 从队列中收集数字
  * @param { Array } nums 数据集
@@ -36,6 +37,7 @@ function collect (queues, nums) {
     }
   })
 }
+
 /**
  * 展示数组
  */

@@ -39,6 +39,9 @@
       - `array.js` 数组基础
       - `objectarray.js` 数组对象
       - `week.js` 数组应用 （周天气）
+    - `dictionary` 字典
+      - `dictionary.js` 字典基础
+      - `index.js` 字典功能测试
     - `list` 列表
       - `borrow.js` 列表应用 （影碟列表）
       - `customer.js` 列表应用 （影碟租借）
