@@ -1,4 +1,4 @@
-const fs = require('fs')
+const { createFileList } = require('../utils/index.js')
 /**
  * 通过队列的方式，实现方块舞的舞伴分配
  * 将来宾分为男女两队，选队列的中的第一人组成舞伴。他们身后的人各向前移动一位形成新的队首
@@ -17,8 +17,7 @@ function Dancer (name, sex) {
  * @param { Object } females 女性队列
  */
 function getDancers (males, females) {
-  let name = fs.readFileSync('./member-list.txt', 'utf-8')
-  name = name.split('\n')
+  let name = createFileList('./member-list.txt')
   name.forEach((item) => {
     item = item.trim()
   })

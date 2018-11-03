@@ -2,6 +2,7 @@
  * 字典测试
  */
 const { Dictionary } = require('./dictionary.js')
+const { wrnum } = require('./wrnum.js')
 let pbook = new Dictionary()
 pbook.add('xsw', '121345')
 pbook.add('hc', '1245')
@@ -14,3 +15,18 @@ pbook.showAll()
 console.log(`当前长度是：${pbook.count()}`)
 pbook.clear()
 console.log(`当前长度是：${pbook.count()}`)
+/**
+ * 字典录入通讯录
+ */
+let memberList = wrnum()
+console.log('\n当前成员列表')
+memberList.showAll()
+console.log(`梁宇的电话号码：${memberList.find('梁宇')}`)
+memberList.add('梁平', '13602671813')
+console.log('\n当前成员列表')
+memberList.showAll()
+memberList.remove('梁平')
+console.log('\n当前成员列表')
+memberList.showAll()
+memberList.clear()
+console.log(`\n当前成员个数：${memberList.count()}`)

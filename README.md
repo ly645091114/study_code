@@ -42,6 +42,8 @@
     - `dictionary` 字典
       - `dictionary.js` 字典基础
       - `index.js` 字典功能测试
+      - `number.txt` 电话号码文本
+      - `wrnum.js` 字典应用（电话号码录入）
     - `list` 列表
       - `borrow.js` 列表应用 （影碟列表）
       - `customer.js` 列表应用 （影碟租借）
@@ -70,6 +72,8 @@
       - `palindrome.js` 栈应用 （回文判断）
       - `recursion.ks` 栈应用 （阶乘）
       - `stack.js` 栈基础
+    - `utils` 自行封装工具
+      - `index.js` 自行封装工具方法
   - `ES6`
   - `node`
   - `README.md`
