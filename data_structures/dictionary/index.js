@@ -3,6 +3,7 @@
  */
 const { Dictionary } = require('./dictionary.js')
 const { wrnum } = require('./wrnum.js')
+const { wordCount } = require('./wordcount.js')
 let pbook = new Dictionary()
 pbook.add('xsw', '121345')
 pbook.add('hc', '1245')
@@ -30,3 +31,8 @@ console.log('\n当前成员列表')
 memberList.showAll()
 memberList.clear()
 console.log(`\n当前成员个数：${memberList.count()}`)
+/**
+ * 文本录入字数统计
+ */
+let str = 'the brown fox jumped over the blue fox'
+wordCount(str)
