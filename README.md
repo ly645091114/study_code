@@ -35,27 +35,25 @@
 有详细目录结构的代表本人的学习进度
 - `study_code`
   - `data_structures` 数据结构与算法
+    - `utils` 自行封装工具
+      - `index.js` 自行封装工具方法
     - `array` 数组
       - `array.js` 数组基础
       - `objectarray.js` 数组对象
       - `week.js` 数组应用 （周天气）
-    - `dictionary` 字典
-      - `dictionary.js` 字典基础
-      - `index.js` 字典功能测试
-      - `number.txt` 电话号码文本
-      - `wrnum.js` 字典应用（电话号码录入）
     - `list` 列表
       - `borrow.js` 列表应用 （影碟列表）
       - `customer.js` 列表应用 （影碟租借）
       - `films.txt` 影碟列表文本
       - `index.js` 列表功能测试
       - `list.js` 列表基础
-    - `llist` 链表
-      - `dllist.js` 双向链表基础
-      - `index.js` 链表功能测试
-      - `josephus.js` 循环链表应用 （约瑟夫环）
-      - `llist.js` 链表基础
-      - `rlist.js` 循环链表基础
+    - `stack` 栈
+      - `brackets.js` 栈应用 （算术表达式中的括号是否匹配）
+      - `index.js` 栈功能测试
+      - `number-system.js` 栈应用 （数制转换）
+      - `palindrome.js` 栈应用 （回文判断）
+      - `recursion.ks` 栈应用 （阶乘）
+      - `stack.js` 栈基础
     - `queue` 队列
       - `dance.js` 队列应用 （方块舞的舞伴分配）
       - `deque.js` 双向队列基础
@@ -65,15 +63,21 @@
       - `priority-queue.js` 队列应用 （优先队列）
       - `queue.js` 队列基础
       - `sort.js` 队列应用 （基数排序）
-    - `stack` 栈
-      - `brackets.js` 栈应用 （算术表达式中的括号是否匹配）
-      - `index.js` 栈功能测试
-      - `number-system.js` 栈应用 （数制转换）
-      - `palindrome.js` 栈应用 （回文判断）
-      - `recursion.ks` 栈应用 （阶乘）
-      - `stack.js` 栈基础
-    - `utils` 自行封装工具
-      - `index.js` 自行封装工具方法
+    - `llist` 链表
+      - `dllist.js` 双向链表基础
+      - `index.js` 链表功能测试
+      - `josephus.js` 循环链表应用 （约瑟夫环）
+      - `llist.js` 链表基础
+      - `rlist.js` 循环链表基础
+    - `dictionary` 字典
+      - `dictionary.js` 字典基础
+      - `index.js` 字典功能测试
+      - `number.txt` 电话号码文本
+      - `wrnum.js` 字典应用（电话号码录入）
+    - `hashtable` 散列
+      - `hashtable.js` 散列基础
+      - `index.js` 散列功能测试
+      - `studata.js` 散列应用（学生成绩录入）
   - `ES6`
   - `node`
   - `README.md`
