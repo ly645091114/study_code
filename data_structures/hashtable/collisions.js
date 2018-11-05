@@ -1,4 +1,3 @@
-const { HashTable } = require('./hashtable.js')
 /**
  * 碰撞处理
  * 两种碰撞解决方法：开链法 和 线性探测法
@@ -74,7 +73,7 @@ function get (key) {
   if (this.table[pos][index] === key) {
     return this.table[pos][index + 1]
   } else {
-    while (this.table[pos][index] !== key && this.table[pos][index] !== undefined) { // 原本有误 为了不进入死循环, 应该判断元素块是不是未赋值
+    while (this.table[pos][index] !== key && this.table[pos][index] !== undefined) { // 原文有误 为了不进入死循环, 应该判断元素块是不是未赋值
       index += 2
     }
     return this.table[pos][index]
