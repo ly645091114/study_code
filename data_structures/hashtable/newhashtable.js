@@ -1,6 +1,7 @@
 /**
  * 重新封装散列函数，使用散列表存储数据
  * 散列构造函数
+ * @param { Object } hashtable 散列
  */
 function NewHashTable (hashtable) {
     hashtable.put = put
@@ -10,7 +11,7 @@ function NewHashTable (hashtable) {
 /**
  * 重新封装存储方法
  * @param { Any } key 键
- * @param { Any } 存入数据
+ * @param { Any } data 存入数据
  */
 function put (key, data) {
   let pos = this.betterHash(key)

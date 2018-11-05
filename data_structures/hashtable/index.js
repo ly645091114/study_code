@@ -5,6 +5,7 @@ const { HashTable } = require('./hashtable.js')
 const { getStuData } = require('./studata.js')
 const { NewHashTable } = require('./newhashtable.js')
 const { createFileList } = require('../utils/index.js')
+const { LHashTable } = require('./collisions.js')
 let someName = ['David', 'Jennifer', 'Donnie', 'Raymond', 'Cynthia', 'Mike', 'Clayton', 'Danny', 'Jonathan']
 let hTable = new HashTable(137)
 someName.forEach((item) => { // 注意这个地方 'Clayton' 和 'Raymond' 散列值一样的，所以 'Raymond' 被覆盖了, 这就是所谓的碰撞, 通过改善散列函数来避免
@@ -14,6 +15,7 @@ hTable.showDistro()
 let bTable = new HashTable(137)
 bTable.put = put
 console.log('\n更好的散列函数实现')
+
 /**
  * 采用更好散列函数的 散列
  */
@@ -25,6 +27,7 @@ someName.forEach((item) => { // 注意这个地方 'Clayton' 和 'Raymond' 散�
   bTable.put(item)
 })
 bTable.showDistro()
+
 /**
  * 散列运用学生成绩录入
  */
@@ -41,6 +44,7 @@ students.forEach((item) => { // 同样存在碰撞的情况
   sTable.put(item)
 })
 sTable.showDistro()
+
 /**
  * 采用更好散列函数的 散列
  */
@@ -51,6 +55,7 @@ students.forEach((item) => { // 同样存在碰撞的情况
   bSTable.put(item)
 })
 bSTable.showDistro()
+
 /**
  * 散列表测试
  */
@@ -62,3 +67,16 @@ num.forEach((item) => {
   members.put(member[0], member[1])
 })
 console.log(`梁宇电话号码：${members.get('梁宇')}`)
+
+/**
+ * 开链法应用
+ */
+let lhashtable = new HashTable(137)
+LHashTable(lhashtable)
+lhashtable.buildChains()
+someName.forEach((item) => { // 注意这个地方 'Clayton' 和 'Raymond' 散列值一样的，所以 'Raymond' 被覆盖了, 这就是所谓的碰撞, 通过改善散列函数来避免
+  lhashtable.put(item, item)
+})
+console.log('\n开链法：')
+lhashtable.showDistro()
+console.log(lhashtable.get('Raymond'))
