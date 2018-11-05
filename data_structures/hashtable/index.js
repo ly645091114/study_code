@@ -3,6 +3,8 @@
  */
 const { HashTable } = require('./hashtable.js')
 const { getStuData } = require('./studata.js')
+const { NewHashTable } = require('./newhashtable.js')
+const { createFileList } = require('../utils/index.js')
 let someName = ['David', 'Jennifer', 'Donnie', 'Raymond', 'Cynthia', 'Mike', 'Clayton', 'Danny', 'Jonathan']
 let hTable = new HashTable(137)
 someName.forEach((item) => { // 注意这个地方 'Clayton' 和 'Raymond' 散列值一样的，所以 'Raymond' 被覆盖了, 这就是所谓的碰撞, 通过改善散列函数来避免
@@ -49,3 +51,14 @@ students.forEach((item) => { // 同样存在碰撞的情况
   bSTable.put(item)
 })
 bSTable.showDistro()
+/**
+ * 散列表测试
+ */
+let num = createFileList('../dictionary/number.txt')
+let members = new HashTable(137)
+NewHashTable(members)
+num.forEach((item) => {
+  let member = item.split(' ')
+  members.put(member[0], member[1])
+})
+console.log(`梁宇电话号码：${members.get('梁宇')}`)
