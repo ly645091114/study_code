@@ -103,7 +103,7 @@ function linePut (key, data) {
 }
 
 /**
- * 重新封装存储方法
+ * 重新封装查询方法
  * @param { Any } key 键
  * @return { Any } 查询结果
  */
@@ -115,6 +115,7 @@ function lineGet (key) {
   if (this.table[pos] != undefined) {
     return this.values[pos]
   }
+  return undefined
 }
 
 /**
