@@ -16,6 +16,7 @@ pbook.showAll()
 console.log(`当前长度是：${pbook.count()}`)
 pbook.clear()
 console.log(`当前长度是：${pbook.count()}`)
+
 /**
  * 字典录入通讯录
  */
@@ -31,6 +32,7 @@ console.log('\n当前成员列表')
 memberList.showAll()
 memberList.clear()
 console.log(`\n当前成员个数：${memberList.count()}`)
+
 /**
  * 文本录入字数统计
  */

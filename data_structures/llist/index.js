@@ -15,6 +15,7 @@ member.display()
 member.remove('黄城')
 console.log('\n当前成员：')
 member.display()
+
 /**
  * 双向链表
  */
@@ -37,6 +38,7 @@ member.remove('黄城')
 console.log('\n当前成员：')
 member.display()
 member.dispReverse()
+
 /**
  * 循环链表
  */
@@ -50,6 +52,7 @@ member.display()
 member.remove('黄城')
 console.log('\n当前成员：')
 member.display()
+
 /**
  * 约瑟夫环
  */

@@ -23,6 +23,7 @@ s.clear()
 console.log(`当前长度：${s.length()}`)
 s.push('梁宇')
 console.log(s.peek())
+
 /**
  * 进制转换
  */
@@ -34,6 +35,7 @@ num = 125
 base = 8
 newNum = mulBase(num, base)
 console.log(`十进制数${num}转八进制数结果：${newNum}`)
+
 /**
  * 回文判断
  */
@@ -41,11 +43,13 @@ let word = 'hello'
 console.log(`${word} ${isPalindrome(word) ? '是' : '不是'}回文`)
 word = 'racecar'
 console.log(`${word} ${isPalindrome(word) ? '是' : '不是'}回文`)
+
 /**
  * 阶乘
  */
 num = 5
 console.log(`${num}的阶乘是：${recursion(num)}`)
+
 /**
  * 判断算术表达式
  */

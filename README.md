@@ -75,7 +75,7 @@
       - `number.txt` 电话号码文本
       - `wrnum.js` 字典应用（电话号码录入）
     - `hashtable` 散列
-      - `colisions.js` 散列优化（碰撞处理）
+      - `colisions.js` 散列优化（碰撞处理: 开链法 线性探测法）
       - `hashtable.js` 散列基础
       - `index.js` 散列功能测试
       - `newhashtable.js` 散列表存储

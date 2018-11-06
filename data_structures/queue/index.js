@@ -15,6 +15,7 @@ q.dequeue()
 console.log(q.toString())
 console.log(`队首元素：${q.front()}`)
 console.log(`队尾元素：${q.back()}`)
+
 /**
  * 方块舞伴分配
  */
@@ -28,6 +29,7 @@ if (femaleDamcers.count() > 0) {
 if (maleDancers.count() > 0) {
   console.log(`当前男性等候人数${maleDancers.count()}人`)
 }
+
 /**
  * 基数排序
  */
@@ -47,6 +49,7 @@ distrbute(nums, queues, 10)
 collect(queues, nums)
 console.log('基数排序后：')
 console.log(dispArray(nums))
+
 /**
  * 优先队列的实现
  */
@@ -75,6 +78,7 @@ goon = ed.pdequeue()
 console.log(`${goon.name}已出队`)
 console.log(`等候用户：`)
 console.log(ed.ptoString())
+
 /**
  * 双向队列判断回文
  */
