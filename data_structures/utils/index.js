@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs');
 /**
  * 从本地文件中获取，文件列表，通过换行符将其切分成数组
  * 再通过 trim() 去除首尾空格
@@ -6,11 +6,12 @@ const fs = require('fs')
  * @return { Array } 文件数组
  */
 function createFileList(file) {
-  let list = fs.readFileSync(file, 'utf-8')
-  list = list.split('\n')
+  let list = fs.readFileSync(file, 'utf-8');
+  list = list.split('\n');
   list.forEach((item) => {
-    item = item.trim()
+    item = item.trim();
   })
-  return list
+  return list;
 }
-exports.createFileList = createFileList
+
+exports.createFileList = createFileList;

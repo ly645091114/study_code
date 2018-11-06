@@ -4,14 +4,14 @@
  * 构建一个字典类
  */
 function Dictionary () {
-  this.dataStore = new Array()
-  this.add = add
-  this.find = find
-  this.remove = remove
-  this.showAll = showAll
-  this.count = count
-  this.clear = clear
-  this.sortShow = sortShow
+  this.dataStore = new Array();
+  this.add = add;
+  this.find = find;
+  this.remove = remove;
+  this.showAll = showAll;
+  this.count = count;
+  this.clear = clear;
+  this.sortShow = sortShow;
 }
 
 /**
@@ -20,7 +20,7 @@ function Dictionary () {
  * @param { Any } value 值
  */
 function add (key, value) {
-  this.dataStore[key] = value
+  this.dataStore[key] = value;
 }
 
 /**
@@ -29,7 +29,7 @@ function add (key, value) {
  * @return { Any } 值
  */
 function find (key) {
-  return this.dataStore[key]
+  return this.dataStore[key];
 }
 
 /**
@@ -37,7 +37,7 @@ function find (key) {
  * @param { Number, String } key 键
  */
 function remove (key) {
-  delete this.dataStore[key]
+  delete this.dataStore[key];
 }
 
 /**
@@ -45,7 +45,7 @@ function remove (key) {
  */
 function showAll () {
   Object.keys(this.dataStore).forEach((key) => {
-    console.log(`${key} -> ${this.dataStore[key]}`)
+    console.log(`${key} -> ${this.dataStore[key]}`);
   })
 }
 
@@ -54,11 +54,11 @@ function showAll () {
  * @return { Number } 元素个数
  */
 function count () {
-  let n = 0
+  let n = 0;
   Object.keys(this.dataStore).forEach(() => {
-    ++n
+    ++n;
   })
-  return n
+  return n;
 }
 
 /**
@@ -66,7 +66,7 @@ function count () {
  */
 function clear () {
   Object.keys(this.dataStore).forEach((key) => {
-    delete this.dataStore[key]
+    delete this.dataStore[key];
   })
 }
 
@@ -75,7 +75,8 @@ function clear () {
  */
 function sortShow () {
   Object.keys(this.dataStore).sort().forEach((key) => {
-    console.log(`${key} -> ${this.dataStore[key]}`)
+    console.log(`${key} -> ${this.dataStore[key]}`);
   })
 }
-exports.Dictionary = Dictionary
+
+exports.Dictionary = Dictionary;

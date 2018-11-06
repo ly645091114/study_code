@@ -9,11 +9,11 @@
  * @param { Number } len 数组长度
  */
 function HashTable (len) {
-  this.table = new Array(len)
-  this.simpleHash = simpleHash
-  this.showDistro = showDistro
-  this.put = put
-  this.betterHash = betterHash
+  this.table = new Array(len);
+  this.simpleHash = simpleHash;
+  this.showDistro = showDistro;
+  this.put = put;
+  this.betterHash = betterHash;
 }
 
 /**
@@ -24,11 +24,11 @@ function HashTable (len) {
  * @return { Number } 存入键
  */
 function simpleHash (data) {
-  let total = 0
+  let total = 0;
   for (let i = 0; i < data.length; ++i) {
-    total += data.charCodeAt(i)
+    total += data.charCodeAt(i);
   }
-  return total % this.table.length
+  return total % this.table.length;
 }
 
 /**
@@ -36,18 +36,17 @@ function simpleHash (data) {
  * @param { Any } data 存入数据
  */
 function put (data) {
-  let pos = this.simpleHash(data)
-  this.table[pos] = data
+  let pos = this.simpleHash(data);
+  this.table[pos] = data;
 }
 
 /**
  * 展示散列表
  */
 function showDistro () {
-  let n = 0
   for (let i = 0; i < this.table.length; ++i) {
     if (this.table[i]) {
-      console.log(`${i} -> ${this.table[i]}`)
+      console.log(`${i} -> ${this.table[i]}`);
     }
   }
 }
@@ -61,14 +60,14 @@ function showDistro () {
  * @return { Number } 存入键
  */
 function betterHash (data, num) {
-  let total = 0
+  let total = 0;
   for (let i = 0; i < data.length; ++i) {
-    total += num * total + data.charCodeAt(i)
+    total += num * total + data.charCodeAt(i);
   }
-  total = total % this.table.length
+  total = total % this.table.length;
   if (total < 0) {
-    total += this.table.length - 1
+    total += this.table.length - 1;
   }
-  return parseInt(total)
+  return parseInt(total);
 }
-exports.HashTable = HashTable
+exports.HashTable = HashTable;

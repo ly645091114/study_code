@@ -9,10 +9,10 @@
  * 集合 构造函数
  */
 function Set () {
-  this.dataStore = []
-  this.add = add
-  this.remove = remove
-  this.show = show
+  this.dataStore = [];
+  this.add = add;
+  this.remove = remove;
+  this.show = show;
 }
 
 /**
@@ -22,10 +22,10 @@ function Set () {
  */
 function add (data) {
   if (this.dataStore.indexOf(data) < 0) { // 集合中不允许相同成员存在
-    this.dataStore.push(data)
-    return true
+    this.dataStore.push(data);
+    return true;
   }
-  return false
+  return false;
 }
 
 /**
@@ -34,12 +34,12 @@ function add (data) {
  * @return { Boolean } 操作结果
  */
 function remove (data) {
-  let pos = this.dataStore.indexOf(data)
+  let pos = this.dataStore.indexOf(data);
   if (pos > -1) {
-    this.dataStore.splice(pos, 1)
-    return true
+    this.dataStore.splice(pos, 1);
+    return true;
   }
-  return false
+  return false;
 }
 
 /**
@@ -47,7 +47,7 @@ function remove (data) {
  * @return { Array } 集合
  */
 function show () {
-  return this.dataStore
+  return this.dataStore;
 }
 
-exports.Set = Set
+exports.Set = Set;

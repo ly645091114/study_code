@@ -4,9 +4,9 @@
  * @param { Any } element 新增元素
  */
 function Node (element) {
-  this.element = element
-  this.next = null
-  this.previous = null
+  this.element = element;
+  this.next = null;
+  this.previous = null;
 }
 
 /**
@@ -14,18 +14,18 @@ function Node (element) {
  * 这里 head 节点的 next 属性被初始化为 null, 当有新元素插入时, next 会指向新的元素, 所以在这里我们没有修改 next 的值
  */
 function RlList () {
-  this.head = new Node('head')
-  this.head.next = this.head
-  this.head.previous = this.head
-  this.find = find
-  this.insert = insert
-  this.remove = remove
-  this.display = display
-  this.count = count
-  this.advance = advance
-  this.currentNode = this.head
-  this.back = back
-  this.show = show
+  this.head = new Node('head');
+  this.head.next = this.head;
+  this.head.previous = this.head;
+  this.find = find;
+  this.insert = insert;
+  this.remove = remove;
+  this.display = display;
+  this.count = count;
+  this.advance = advance;
+  this.currentNode = this.head;
+  this.back = back;
+  this.show = show;
 }
 
 /**
@@ -34,11 +34,11 @@ function RlList () {
  * @return { Object } 匹配元素的节点
  */
 function find (element) {
-  let currNode = this.head
+  let currNode = this.head;
   while (currNode.element !== element) {
-    currNode = currNode.next
+    currNode = currNode.next;
   }
-  return currNode
+  return currNode;
 }
 
 /**
@@ -47,21 +47,21 @@ function find (element) {
  * @param { Any } element 被插入节点
  */
 function insert (newElement, element) {
-  let newNode = new Node(newElement)
-  let current = this.find(element)
-  newNode.next = current.next
-  newNode.previous = current
-  current.next = newNode
+  let newNode = new Node(newElement);
+  let current = this.find(element);
+  newNode.next = current.next;
+  newNode.previous = current;
+  current.next = newNode;
 }
 
 /**
  * 显示链表中的元素
  */
 function display () {
-  let currNode = this.head
+  let currNode = this.head;
   while (!(currNode.next === null) && !(currNode.next.element === 'head')) {
-    console.log(currNode.next.element)
-    currNode = currNode.next
+    console.log(currNode.next.element);
+    currNode = currNode.next;
   }
 }
 
@@ -71,10 +71,10 @@ function display () {
  * @param { Any } element 删除元素
  */
 function remove (element) {
-  let currNode = this.find(element)
+  let currNode = this.find(element);
   if (!(currNode.next === null) && !(currNode.next.element === 'head')) {
-    currNode.previous.next = currNode.next
-    currNode.next.previous = currNode.previous
+    currNode.previous.next = currNode.next;
+    currNode.next.previous = currNode.previous;
   } 
 }
 
@@ -82,13 +82,13 @@ function remove (element) {
  * 获取链表长度
  */
 function count () {
-  let currNode = this.head
-  let i = 0
+  let currNode = this.head;
+  let i = 0;
   while (!(currNode.next.element === 'head')) {
-    currNode = currNode.next
-    i++
+    currNode = currNode.next;
+    i++;
   }
-  return i
+  return i;
 }
 
 /**
@@ -97,11 +97,11 @@ function count () {
  */
 function advance (n) {
   while (n > 0) {
-    this.currentNode = this.currentNode.next
+    this.currentNode = this.currentNode.next;
     if (this.currentNode.element === 'head') {
-      this.currentNode = this.currentNode.next
+      this.currentNode = this.currentNode.next;
     }
-    n--
+    n--;
   }
 }
 
@@ -111,11 +111,11 @@ function advance (n) {
  */
 function back (n) {
   while (n > 0) {
-    this.currentNode = this.currentNode.previous
+    this.currentNode = this.currentNode.previous;
     if (this.currentNode.element === 'head') {
-      this.currentNode = this.currentNode.previous
+      this.currentNode = this.currentNode.previous;
     }
-    n--
+    n--;
   }
 }
 
@@ -124,6 +124,7 @@ function back (n) {
  * @return { Any } 当前节点元素
  */
 function show () {
-  console.log(this.currentNode.element)
+  console.log(this.currentNode.element);
 }
-exports.RlList = RlList
+
+exports.RlList = RlList;

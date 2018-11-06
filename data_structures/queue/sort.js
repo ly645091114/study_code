@@ -11,13 +11,13 @@ function distrbute (nums, queues, digit) {
   nums.forEach((item) => {
     switch (digit) {
       case 1:
-        queues[item % 10].enqueue(item)
-        break
+        queues[item % 10].enqueue(item);
+        break;
       case 10:
-        queues[Math.floor(item / 10)].enqueue(item)
-        break
+        queues[Math.floor(item / 10)].enqueue(item);
+        break;
       default:
-        break
+        break;
     }
   })
 }
@@ -28,12 +28,12 @@ function distrbute (nums, queues, digit) {
  * @param { Array } queues 队列集
  */
 function collect (queues, nums) {
-  let i = 0
+  let i = 0;
   queues.forEach((item) => {
     while (!item.empty()) {
       let num = item.front()
-      nums[i++] = num
-      item.dequeue()
+      nums[i++] = num;
+      item.dequeue();
     }
   })
 }
@@ -42,11 +42,11 @@ function collect (queues, nums) {
  * 展示数组
  */
 function dispArray (arr) {
-  let str = ''
+  let str = '';
   arr.forEach((item) => {
-    str += `${item} `
+    str += `${item} `;
   })
-  return str
+  return str;
 }
 exports = module.exports = {
   distrbute,

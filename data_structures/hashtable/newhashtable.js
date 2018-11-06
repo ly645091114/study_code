@@ -4,8 +4,8 @@
  * @param { Object } hashtable 散列
  */
 function NewHashTable (hashtable) {
-    hashtable.put = put
-    hashtable.get = get
+    hashtable.put = put;
+    hashtable.get = get;
 }
 
 /**
@@ -14,8 +14,8 @@ function NewHashTable (hashtable) {
  * @param { Any } data 存入数据
  */
 function put (key, data) {
-  let pos = this.betterHash(key)
-  this.table[pos] = data
+  let pos = this.betterHash(key);
+  this.table[pos] = data;
 }
 
 /**
@@ -23,7 +23,7 @@ function put (key, data) {
  * @param { Any } key 键
  */
 function get (key) {
-  return this.table[this.betterHash(key)]
+  return this.table[this.betterHash(key)];
 }
 
-exports.NewHashTable = NewHashTable
+exports.NewHashTable = NewHashTable;

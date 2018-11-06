@@ -14,12 +14,12 @@ function Node (element) {
  * 这里 head 节点的 next 属性被初始化为 null, 当有新元素插入时, next 会指向新的元素, 所以在这里我们没有修改 next 的值
  */
 function LList () {
-  this.head = new Node('head')
-  this.find = find
-  this.insert = insert
-  this.remove = remove
-  this.findPrevious = findPrevious
-  this.display = display
+  this.head = new Node('head');
+  this.find = find;
+  this.insert = insert;
+  this.remove = remove;
+  this.findPrevious = findPrevious;
+  this.display = display;
 }
 
 /**
@@ -28,11 +28,11 @@ function LList () {
  * @return { Object } 匹配元素的节点
  */
 function find (element) {
-  let currNode = this.head
+  let currNode = this.head;
   while (currNode.element !== element) {
-    currNode = currNode.next
+    currNode = currNode.next;
   }
-  return currNode
+  return currNode;
 }
 
 /**
@@ -41,20 +41,20 @@ function find (element) {
  * @param { Any } element 被插入节点
  */
 function insert (newElement, element) {
-  let newNode = new Node(newElement)
-  let current = this.find(element)
-  newNode.next = current.next
-  current.next = newNode
+  let newNode = new Node(newElement);
+  let current = this.find(element);
+  newNode.next = current.next;
+  current.next = newNode;
 }
 
 /**
  * 显示链表中的元素
  */
 function display () {
-  let currNode = this.head
+  let currNode = this.head;
   while (!(currNode.next === null)) {
-    console.log(currNode.next.element)
-    currNode = currNode.next
+    console.log(currNode.next.element);
+    currNode = currNode.next;
   }
 }
 
@@ -64,11 +64,11 @@ function display () {
  * @return { Object } 返回前一节点
  */
 function findPrevious (element) {
-  let currNode = this.head
+  let currNode = this.head;
   while (!(currNode.next === null) && (currNode.next.element !== element)) {
-    currNode = currNode.next
+    currNode = currNode.next;
   }
-  return currNode
+  return currNode;
 }
 
 /**
@@ -77,9 +77,10 @@ function findPrevious (element) {
  * @param { Any } element 删除元素
  */
 function remove (element) {
-  let prevNode = this.findPrevious(element)
+  let prevNode = this.findPrevious(element);
   if (!(prevNode.next === null)) {
-    prevNode.next = prevNode.next.next
+    prevNode.next = prevNode.next.next;
   } 
 }
-exports.LList = LList
+
+exports.LList = LList;

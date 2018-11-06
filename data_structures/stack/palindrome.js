@@ -1,21 +1,21 @@
-const { Stack } = require('./stack.js')
+const { Stack } = require('./stack.js');
 /**
  * 使用栈，判断字符串是否是回文的方法
  * @param { String } word 检查文本
  * @return { Boolean } 判断结果
  */
 function isPalindrome (word) {
-  let s = new Stack()
+  let s = new Stack();
   for (let i = 0; i < word.length; ++i) {
-    s.push(word[i])
+    s.push(word[i]);
   }
-  let rword = ''
+  let rword = '';
   while (s.length() > 0) {
-    rword += s.pop()
+    rword += s.pop();
   }
   if (word === rword) {
-    return true
+    return true;
   }
-  return false
+  return false;
 }
-exports.isPalindrome = isPalindrome
+exports.isPalindrome = isPalindrome;

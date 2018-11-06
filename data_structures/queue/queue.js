@@ -4,16 +4,16 @@
  * 应用场景提交操作系统执行一系列操作
  */
 function Queue () {
-  this.dataStore = []
-  this.enqueue = enqueue
-  this.dequeue = dequeue
-  this.front = front
-  this.back = back
-  this.toString = toString
-  this.empty = empty
-  this.count = count
-  this.pdequeue = pdequeue
-  this.ptoString = ptoString
+  this.dataStore = [];
+  this.enqueue = enqueue;
+  this.dequeue = dequeue;
+  this.front = front;
+  this.back = back;
+  this.toString = toString;
+  this.empty = empty;
+  this.count = count;
+  this.pdequeue = pdequeue;
+  this.ptoString = ptoString;
 }
 
 /**
@@ -21,14 +21,14 @@ function Queue () {
  * @param { Any } element 添加元素
  */
 function enqueue (element) {
-  this.dataStore.push(element)
+  this.dataStore.push(element);
 }
 
 /**
  * 出队操作，即删除队首元素
  */
 function dequeue () {
-  this.dataStore.shift()
+  this.dataStore.shift();
 }
 
 /**
@@ -36,15 +36,15 @@ function dequeue () {
  * 元素越小优先级越高
  */
 function pdequeue () {
-  let entry = 0
+  let entry = 0;
   this.dataStore.forEach((item, index) => {
     if (item.code < this.dataStore[entry].code) {
-      entry = index
+      entry = index;
     }
   })
-  let reStr = this.dataStore[entry]
-  this.dataStore.splice(entry, 1)
-  return reStr
+  let reStr = this.dataStore[entry];
+  this.dataStore.splice(entry, 1);
+  return reStr;
 }
 
 /**
@@ -52,7 +52,7 @@ function pdequeue () {
  * @return { String } 队首元素
  */
 function front () {
-  return this.dataStore[0]
+  return this.dataStore[0];
 }
 
 /**
@@ -60,7 +60,7 @@ function front () {
  * @return { String } 队尾元素
  */
 function back () {
-  return this.dataStore[this.dataStore.length - 1]
+  return this.dataStore[this.dataStore.length - 1];
 }
 
 /**
@@ -68,22 +68,22 @@ function back () {
  * @return { String } 队列元素
  */
 function toString () {
-  let reStr = ''
+  let reStr = '';
   this.dataStore.forEach((item) => {
-    reStr += `${item}\n`
+    reStr += `${item}\n`;
   })
-  return reStr
+  return reStr;
 }
 
 /**
  * 优先队列输出
  */
 function ptoString () {
-  let reStr = ''
+  let reStr = '';
   this.dataStore.forEach((item) => {
-    reStr += `${item.name} code: ${item.code}\n`
+    reStr += `${item.name} code: ${item.code}\n`;
   })
-  return reStr
+  return reStr;
 }
 
 /**
@@ -91,7 +91,7 @@ function ptoString () {
  * @return { Boolean } 队列是否为空
  */
 function empty () {
-  return this.dataStore.length === 0
+  return this.dataStore.length === 0;
 }
 
 /**
@@ -99,7 +99,7 @@ function empty () {
  * @return { Number } 队列长度
  */
 function count () {
-  return this.dataStore.length
+  return this.dataStore.length;
 }
 
-exports.Queue = Queue
+exports.Queue = Queue;

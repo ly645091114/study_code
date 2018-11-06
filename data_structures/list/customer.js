@@ -4,9 +4,9 @@
  * @param { String } movie 租借影碟
  */
 function Customer (name, movie) {
-  let self = this
-  self.name = name
-  self.movie = movie
+  let self = this;
+  self.name = name;
+  self.movie = movie;
 }
 
-exports.Customer = Customer
+exports.Customer = Customer;

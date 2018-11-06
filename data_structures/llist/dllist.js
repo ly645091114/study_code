@@ -70,12 +70,12 @@ function display () {
  * @param { Any } element 删除元素
  */
 function remove (element) {
-  let currNode = this.find(element)
+  let currNode = this.find(element);
   if (!(currNode.next === null)) {
-    currNode.previous.next = currNode.next
-    currNode.next.previous = currNode.previous
-    currNode.next = null
-    currNode.previous = null
+    currNode.previous.next = currNode.next;
+    currNode.next.previous = currNode.previous;
+    currNode.next = null;
+    currNode.previous = null;
   } 
 }
 
@@ -84,22 +84,22 @@ function remove (element) {
  * @return { Object } 匹配元素的节点
  */
 function findLast () {
-  let currNode = this.head
+  let currNode = this.head;
   while (!(currNode.next === null)) {
-    currNode = currNode.next
+    currNode = currNode.next;
   }
-  return currNode
+  return currNode;
 }
 
 /**
  * 反向遍历链表
  */
 function dispReverse () {
-  let currNode = this.head
-  currNode = this.findLast()
+  let currNode = this.head;
+  currNode = this.findLast();
   while (!(currNode.previous === null)) {
-    console.log(currNode.element)
-    currNode = currNode.previous
+    console.log(currNode.element);
+    currNode = currNode.previous;
   }
 }
 
@@ -109,8 +109,8 @@ function dispReverse () {
  */
 function advance (n) {
   while ((n > 0) && !(this.currentNode.next === null)) {
-    this.currentNode = this.currentNode.next
-    n--
+    this.currentNode = this.currentNode.next;
+    n--;
   }
 }
 
@@ -120,8 +120,8 @@ function advance (n) {
  */
 function back (n) {
   while ((n > 0) && !(this.currentNode.element === 'head')) {
-    this.currentNode = this.currentNode.previous
-    n--
+    this.currentNode = this.currentNode.previous;
+    n--;
   }
 }
 
@@ -130,6 +130,7 @@ function back (n) {
  * @return { Any } 当前节点元素
  */
 function show () {
-  console.log(this.currentNode.element)
+  console.log(this.currentNode.element);
 }
-exports.DlList = DlList
+
+exports.DlList = DlList;

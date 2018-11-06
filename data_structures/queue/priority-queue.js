@@ -9,7 +9,7 @@
  * @param { Number } code 优先级
  */
 function Patient (name, code) {
-  this.name = name
-  this.code = code
+  this.name = name;
+  this.code = code;
 }
-exports.Patient = Patient
+exports.Patient = Patient;

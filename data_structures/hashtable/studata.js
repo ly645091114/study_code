@@ -6,7 +6,7 @@
  * @return { Number } 随机成绩
  */
 function getRadomInt (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -15,13 +15,13 @@ function getRadomInt (min, max) {
  */
 function getStuData (arr) {
   for (let i = 0; i < arr.length; ++i) {
-    let num = ''
+    let num = '';
     for (let j = 0; j <= 9; ++j) { // 内层循环随机生成学生 ID
-      num += Math.floor(Math.random() * 10)
+      num += Math.floor(Math.random() * 10);
     }
-    num += getRadomInt(50, 100) // 随机生成该学生成绩
-    arr[i] = num
+    num += getRadomInt(50, 100); // 随机生成该学生成绩
+    arr[i] = num;
   }
 }
 
-exports.getStuData = getStuData
+exports.getStuData = getStuData;

@@ -6,10 +6,10 @@
  * @param { Object } hashtable 散列
  */
 function LHashTable (hashtable) {
-  hashtable.buildChains = buildChains
-  hashtable.showDistro = showDistro
-  hashtable.put = put
-  hashtable.get = get
+  hashtable.buildChains = buildChains;
+  hashtable.showDistro = showDistro;
+  hashtable.put = put;
+  hashtable.get = get;
 }
 
 /**
@@ -17,7 +17,7 @@ function LHashTable (hashtable) {
  */
 function buildChains () {
   for (let i = 0; i < this.table.length; ++i) {
-    this.table[i] = new Array()
+    this.table[i] = new Array();
   }
 }
 
@@ -28,10 +28,10 @@ function buildChains () {
 function showDistro () {
   for (let i = 0; i < this.table.length; ++i) {
     if (this.table[i][0] != undefined) {
-      let index = 0
+      let index = 0;
       while (this.table[i][index] !== undefined) {
-        console.log(`${i} -> ${this.table[i][index + 1]}`)
-        index += 2
+        console.log(`${i} -> ${this.table[i][index + 1]}`);
+        index += 2;
       }
     }
   }
@@ -46,13 +46,13 @@ function showDistro () {
  * @param { Any } data 存入数据
  */
 function put (key, data) {
-  let pos = this.simpleHash(key) // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
-  let index = 0
+  let pos = this.simpleHash(key); // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
+  let index = 0;
   while (this.table[pos][index] != undefined) {
-    ++index
+    ++index;
   }
-  this.table[pos][index] = key
-  this.table[pos][index + 1] = data
+  this.table[pos][index] = key;
+  this.table[pos][index + 1] = data;
 }
 
 /**
@@ -62,12 +62,12 @@ function put (key, data) {
  * @return { Any } 查询结果
  */
 function get (key) {
-  let index = 0
-  let pos = this.simpleHash(key) // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
+  let index = 0;
+  let pos = this.simpleHash(key); // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
   while (this.table[pos][index] !== key && this.table[pos][index] !== undefined) { // 原文有误 为了不进入死循环, 应该判断元素块是不是未赋值
-    index += 2
+    index += 2;
   }
-  return this.table[pos][index + 1]
+  return this.table[pos][index + 1];
 }
 
 /**
@@ -82,10 +82,10 @@ function get (key) {
  * @param { Object } hashtable 散列
  */
 function LineHashTable (hashtable) {
-  hashtable.values = []
-  hashtable.put = linePut
-  hashtable.get = lineGet
-  hashtable.showDistro = lineShowDistro
+  hashtable.values = [];
+  hashtable.put = linePut;
+  hashtable.get = lineGet;
+  hashtable.showDistro = lineShowDistro;
 }
 
 /**
@@ -94,12 +94,12 @@ function LineHashTable (hashtable) {
  * @param { Any } data 存入数据
  */
 function linePut (key, data) {
-  let pos = this.simpleHash(key) // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
+  let pos = this.simpleHash(key); // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
   while (this.table[pos] != undefined) {
-    pos++
+    pos++;
   }
-  this.table[pos] = key
-  this.values[pos] = data
+  this.table[pos] = key;
+  this.values[pos] = data;
 }
 
 /**
@@ -108,14 +108,14 @@ function linePut (key, data) {
  * @return { Any } 查询结果
  */
 function lineGet (key) {
-  let pos = this.simpleHash(key) // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
+  let pos = this.simpleHash(key); // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
   while (this.table[pos] != undefined && this.table[pos] !== key) {
-    pos++
+    pos++;
   }
   if (this.table[pos] != undefined) {
-    return this.values[pos]
+    return this.values[pos];
   }
-  return undefined
+  return undefined;
 }
 
 /**
@@ -124,7 +124,7 @@ function lineGet (key) {
 function lineShowDistro () {
   for (let i = 0; i < this.table.length; ++i) {
     if (this.table[i] != undefined) {
-      console.log(`${this.table[i]} -> ${this.values[i]}`)
+      console.log(`${this.table[i]} -> ${this.values[i]}`);
     }
   }
 }

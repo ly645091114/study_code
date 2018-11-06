@@ -3,14 +3,14 @@
  * 构建一个约瑟夫环方法
  * @param { Number } num 间隔
  * @param { Object } currNode 链表
- * @return {  }
  */
 function josephus (currNode, num) {
   while (currNode.count() > num - 1) {
-    currNode.advance(num)
-    currNode.remove(currNode.currentNode.element)
+    currNode.advance(num);
+    currNode.remove(currNode.currentNode.element);
   }
-  console.log('\n安全结果是：')
-  currNode.display()
+  console.log('\n安全结果是：');
+  currNode.display();
 }
-exports.josephus = josephus
+
+exports.josephus = josephus;
