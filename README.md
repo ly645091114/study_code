@@ -83,6 +83,9 @@
     - `set` 集合
       - `index.js` 集合功能测试
       - `set.js` 集合基础
+    - `tree` 二叉查找树
+      - `index.js` 二叉查找树功能测试
+      - `tree.js` 二叉查找树基础
   - `ES6`
   - `node`
   - `README.md`
