@@ -71,7 +71,7 @@ function insert (data) {
 function inOrder (node) {
   let str = '';
   if (!(node === null)) {
-    str += `${inOrder(node.left)} ${node.show()} ${inOrder(node.right)}`;
+    str += `${inOrder(node.left)}${node.show()} ${inOrder(node.right)}`;
   }
   return str;
 }
