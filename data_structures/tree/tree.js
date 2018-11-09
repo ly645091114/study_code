@@ -32,6 +32,11 @@ function BST () {
   this.root = null;
   this.insert = insert;
   this.inOrder = inOrder;
+  this.preOrder = preOrder;
+  this.postOrder = postOrder;
+  this.getMin = getMin;
+  this.getMax = getMax;
+  this.find = find;
 }
 
 /**
@@ -74,6 +79,74 @@ function inOrder (node) {
     str += `${inOrder(node.left)}${node.show()} ${inOrder(node.right)}`;
   }
   return str;
+}
+
+/**
+ * 先序遍历
+ */
+function preOrder (node) {
+  let str = '';
+  if (!(node === null)) {
+    str += `${node.show()} ${inOrder(node.left)}${inOrder(node.right)}`;
+  }
+  return str;
+}
+
+/**
+ * 后序遍历
+ */
+function postOrder (node) {
+  let str = '';
+  if (!(node === null)) {
+    str += `${inOrder(node.left)}${inOrder(node.right)}${node.show()} `;
+  }
+  return str;
+}
+
+/**
+ * 查找最小值
+ * 因为较小的值总是在左子节点上，在 BST 上查找最小值，只需要遍历左子树，直到找到最后的一个节点
+ * @return { Any } 最小值
+ */
+function getMin () {
+  let current = this.root;
+  while (current.left !== null) {
+    current = current.left;
+  }
+  return current.data;
+}
+
+/**
+ * 查找最大值
+ * 同查找最小值，在 BST 上查找最大值，只需要遍历右子树，直到找到最后的一个节点
+ * @return { Any } 最大值
+ */
+function getMax () {
+  let current = this.root;
+  while (current.right !== null) {
+    current = current.right;
+  }
+  return current.data;
+}
+
+/**
+ * 查找指定值
+ * 需要比较该值和当前节点值得大小，通过比较决定左遍历还是右遍历
+ * @param { Any } data 查找值
+ * @return { Object } 匹配值得节点 
+ */
+function find (data) {
+  let current = this.root;
+  while (current !== null) {
+    if (current.data === data) {
+      return current;
+    } else if (data < current.data) {
+      current = current.left;
+    } else {
+      current = current.right;
+    }
+  }
+  return null;
 }
 
 exports.BST = BST;
