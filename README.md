@@ -95,3 +95,7 @@
 cd /data_structures/stack
 node ./index.js
 ```
+
+## 事记
+
+- `2018-11-10` 请假（昨天加班到凌晨四点， 精神状态不好休息一天）
