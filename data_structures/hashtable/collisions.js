@@ -27,7 +27,7 @@ function buildChains () {
  */
 function showDistro () {
   for (let i = 0; i < this.table.length; ++i) {
-    if (this.table[i][0] != undefined) {
+    if (this.table[i][0] !== undefined) {
       let index = 0;
       while (this.table[i][index] !== undefined) {
         console.log(`${i} -> ${this.table[i][index + 1]}`);
@@ -48,7 +48,7 @@ function showDistro () {
 function put (key, data) {
   let pos = this.simpleHash(key); // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
   let index = 0;
-  while (this.table[pos][index] != undefined) {
+  while (this.table[pos][index] !== undefined) {
     ++index;
   }
   this.table[pos][index] = key;
@@ -95,7 +95,7 @@ function LineHashTable (hashtable) {
  */
 function linePut (key, data) {
   let pos = this.simpleHash(key); // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
-  while (this.table[pos] != undefined) {
+  while (this.table[pos] !== undefined) {
     pos++;
   }
   this.table[pos] = key;
@@ -109,10 +109,10 @@ function linePut (key, data) {
  */
 function lineGet (key) {
   let pos = this.simpleHash(key); // 为验证碰撞方法，此处用了容易产生碰撞的散列函数
-  while (this.table[pos] != undefined && this.table[pos] !== key) {
+  while (this.table[pos] !== undefined && this.table[pos] !== key) {
     pos++;
   }
-  if (this.table[pos] != undefined) {
+  if (this.table[pos] !== undefined) {
     return this.values[pos];
   }
   return undefined;
@@ -123,7 +123,7 @@ function lineGet (key) {
  */
 function lineShowDistro () {
   for (let i = 0; i < this.table.length; ++i) {
-    if (this.table[i] != undefined) {
+    if (this.table[i] !== undefined) {
       console.log(`${this.table[i]} -> ${this.values[i]}`);
     }
   }

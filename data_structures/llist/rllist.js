@@ -35,7 +35,7 @@ function RlList () {
  */
 function find (element) {
   let currNode = this.head;
-  while (currNode.element !== element) {
+  while (currNode.element !== element && !(currNode.next.element === 'head')) {
     currNode = currNode.next;
   }
   return currNode;

@@ -45,7 +45,7 @@ function put (data) {
  */
 function showDistro () {
   for (let i = 0; i < this.table.length; ++i) {
-    if (this.table[i]) {
+    if (!(this.table[i] === undefined)) {
       console.log(`${i} -> ${this.table[i]}`);
     }
   }
