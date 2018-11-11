@@ -10,6 +10,7 @@
  */
 function Node (data, left, right) {
   this.data = data;
+  this.count = 1;
   this.left = left;
   this.right = right;
   this.show = show;
@@ -37,6 +38,7 @@ function BST () {
   this.getMin = getMin;
   this.getMax = getMax;
   this.find = find;
+  this.remove = remove;
 }
 
 /**
@@ -58,12 +60,15 @@ function insert (data) {
           parent.left = n;
           break;
         }
-      } else { // 反之，设新的当前节点为右节点
+      } else if (data > current.data) { // 反之，设新的当前节点为右节点
         current = current.right;
         if (current === null) { // 如果当前节点为 null 就将新的节点插入这个位置，推出循环；反之执行下一循环
           parent.right = n;
           break;
         }
+      } else { // 通过二叉查找树实现计数
+        current.count++
+        break
       }
     }
   }
@@ -147,6 +152,60 @@ function find (data) {
     }
   }
   return null;
+}
+
+/**
+ * 在二叉查找树上查找树上删除节点
+ * 删除方法
+ * @param { Any } 删除元素
+ */
+function remove (data) {
+  this.root = removeNode(this.root, data);
+}
+
+/**
+ * 删除节点
+ * @param { Object } node 当前节点
+ * @param { Any } data 删除元素
+ * @return { Object } 删除节点后的树
+ */
+function removeNode (node, data) {
+  if (node === null) { // 判断当前节点是否为空节点
+    return null;
+  }
+  if (data === node.data) { // 如果当前节点为要删除节点
+    if (node.left === null && node.right === null) { // 如果待删除节点为叶子节点
+      return null;
+    }
+    if (node.left === null) { // 如果当前节点没有左节点
+      return node.right;
+    }
+    if (node.right === null) { // 如果当前节点没有右节点
+      return node.left;
+    }
+    var tempNode = getSmallest(node.right);
+    node.right = removeNode(node.right, tempNode.data);
+    return node;
+  } else if (data < node.data) {
+    node.left = removeNode(node.left, data);
+    return node;
+  } else {
+    node.right = removeNode(node.right, data);
+    return node;
+  }
+}
+
+/**
+ * 获取节点的最小值
+ * @param { Object } node 查找节点
+ * @return { Object } 返回下一节点或者当前节点为最小节点
+ */
+function getSmallest (node) {
+  if (node.left === null) {
+    return node
+  } else {
+    return getSmallest (node.left)
+  }
 }
 
 exports.BST = BST;
