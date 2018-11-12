@@ -39,6 +39,7 @@ function BST () {
   this.getMax = getMax;
   this.find = find;
   this.remove = remove;
+  this.getNodeNum = getNodeNum;
 }
 
 /**
@@ -202,10 +203,25 @@ function removeNode (node, data) {
  */
 function getSmallest (node) {
   if (node.left === null) {
-    return node
+    return node;
   } else {
-    return getSmallest (node.left)
+    return getSmallest (node.left);
   }
+}
+
+/**
+ * 获取 BST 中的节点个数
+ * @param { Object } 遍历节点
+ * @return 节点个数
+ */
+function getNodeNum (node) {
+  let num = 0;
+  if (!(node === null)) {
+    num++;
+    num += getNodeNum(node.left);
+    num += getNodeNum(node.right);
+  }
+  return num;
 }
 
 exports.BST = BST;
