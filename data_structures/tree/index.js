@@ -24,7 +24,7 @@ console.log(`该树的最小值是：${nums.getMin()}`);
 console.log(`该树的最大值是：${nums.getMax()}`);
 console.log(`查找37：${nums.find(37)}`);
 console.log(`查找1：${nums.find(1)}`);
-console.log(`二叉查找树节边的个数：${nums.getNodeNum(nums.root) - 1}`);
+console.log(`二叉查找树节边的个数：${nums.getNodeNum(nums.root) - 1}`); // 二叉查找树边的个数 = 二叉查找树节点个数 - 1 （根节点）
 console.log(`删除 18`);
 nums.remove(18);
 console.log(`中序遍历二叉查找树：${nums.inOrder(nums.root)}`);
