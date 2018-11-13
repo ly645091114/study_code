@@ -17,6 +17,11 @@ function Graph (v) {
   }
   this.addEdge = addEdge;
   this.showGraph = showGraph;
+  this.dfs = dfs;
+  this.marked = [];
+  for (let i = 0; i < this.vertices; i++) {
+    this.marked[i] = false;
+  }
 }
 
 /**
@@ -43,6 +48,24 @@ function showGraph () {
     })
     console.log(str);
   })
+}
+
+/**
+ * 深度优先搜索函数
+ * 访问一个没有访问过的顶点，将它标记为已访问，再递归地去访问在初始顶点的邻接表中其他没有访问过的顶点
+ * @param { Number } v 搜索顶点
+ */
+function dfs (v) {
+  this.marked[v] = true;
+  if (this.adj[v] !== undefined) {
+    console.log(`当前顶点：${v}`);
+  }
+  for (let w in this.adj[v]) {
+    let curVertice = this.adj[v][w];
+    if (!this.marked[curVertice]) {
+      this.dfs(curVertice);
+    }
+  }
 }
 
 exports.Graph = Graph;
