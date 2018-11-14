@@ -18,6 +18,7 @@ function Graph (v) {
   this.addEdge = addEdge;
   this.showGraph = showGraph;
   this.dfs = dfs;
+  this.bfs= bfs;
   this.marked = [];
   for (let i = 0; i < this.vertices; i++) {
     this.marked[i] = false;
@@ -64,6 +65,32 @@ function dfs (v) {
     let curVertice = this.adj[v][w];
     if (!this.marked[curVertice]) {
       this.dfs(curVertice);
+    }
+  }
+}
+
+/**
+ * 广度优先搜索函数
+ * 1.查找与当前顶点相邻的未访问顶点，将其添加到已访问顶点的列表及队列中
+ * 2.从图中取出下一个顶点 v ，添加到已访问的顶点列表
+ * 3.将所有与 v 相邻的未访问顶点添加到队列
+ * @param { Number } s 搜索顶点
+ */
+function bfs (s) {
+  let queue = [];
+  this.marked[s] = true;
+  queue.push(s); // 添加到队尾
+  while (queue.length > 0) {
+    let v = queue.shift(); // 从队首移除
+    if (this.adj[v] !== undefined) {
+      console.log(`当前顶点：${v}`);
+    }
+    for (let w in this.adj[v]) {
+      let curVertice = this.adj[v][w];
+      if (!this.marked[curVertice]) {
+        this.marked[curVertice] = true;
+        queue.push(curVertice);
+      }
     }
   }
 }
