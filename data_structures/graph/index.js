@@ -19,3 +19,18 @@ gh.addEdge(2, 4);
 gh.showGraph();
 console.log('\n广度优先搜索：')
 gh.bfs(0); // 广度优先搜索
+
+/**
+ * 广度优先搜索查找最短路径
+ */
+let vertex = 4;
+let paths = gh.pathTo(vertex);
+let str = '';
+while (paths.length > 0) {
+  if (paths.length > 1) {
+    str += `${paths.pop()} - `;
+  } else {
+    str += paths.pop();
+  }
+}
+console.log(str);

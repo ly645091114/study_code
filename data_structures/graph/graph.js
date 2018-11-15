@@ -20,9 +20,12 @@ function Graph (v) {
   this.dfs = dfs;
   this.bfs= bfs;
   this.marked = [];
+  this.edgeTo = []; // 查找最短路径
   for (let i = 0; i < this.vertices; i++) {
     this.marked[i] = false;
   }
+  this.pathTo = pathTo;
+  this.hasPathTo = hasPathTo;
 }
 
 /**
@@ -88,11 +91,37 @@ function bfs (s) {
     for (let w in this.adj[v]) {
       let curVertice = this.adj[v][w];
       if (!this.marked[curVertice]) {
+        this.edgeTo[curVertice] = v;
         this.marked[curVertice] = true;
         queue.push(curVertice);
       }
     }
   }
+}
+
+/**
+ * 创建一个栈用来存储与指定顶点有共边的所有顶点
+ * @param { Number } v 指定顶点
+ * @return { Array } 路径
+ */
+function pathTo (v) {
+  let source = 0;
+  if (!this.hasPathTo(v)) {
+    return undefined;
+  }
+  let path = [];
+  for (let i = v; i !== source; i = this.edgeTo[i]) {
+    path.push(i);
+  }
+  path.push(source);
+  return path;
+}
+
+/**
+ * 是否访问到顶点
+ */
+function hasPathTo (v) {
+  return this.marked[v];
 }
 
 exports.Graph = Graph;
