@@ -124,4 +124,9 @@ function hasPathTo (v) {
   return this.marked[v];
 }
 
+/**
+ * 拓扑排序
+ * 优先级约束调度，例如只有先上过英语写作1，才能上英语写作2
+ */
+
 exports.Graph = Graph;
