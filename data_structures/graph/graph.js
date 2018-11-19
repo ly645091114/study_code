@@ -9,6 +9,7 @@
  */
 function Graph (v) {
   this.vertices = v;
+  this.vertexList = []; // 将各个顶点关联到一个符号
   this.edges = 0; // 图的边数
   this.adj = []; // 邻接表
   for (let i = 0; i < this.vertices; i++) { // for 循环为数组中每个元素添加一个子数组来存储所有的相邻顶点，并将所有元素初始化为空字符串。
@@ -26,6 +27,9 @@ function Graph (v) {
   }
   this.pathTo = pathTo;
   this.hasPathTo = hasPathTo;
+  this.topSort = topSort;
+  this.topSortHelper = topSortHelper;
+  this.newShowGraph = newShowGraph;
 }
 
 /**
@@ -127,6 +131,54 @@ function hasPathTo (v) {
 /**
  * 拓扑排序
  * 优先级约束调度，例如只有先上过英语写作1，才能上英语写作2
+ * 构建一个方法并调用一个辅助函数topSortHelper(), 然后显示排序好的顶点列表。
  */
+function topSort () {
+  let stack = [];
+  let visited = [];
+  for (let i = 0; i < this.vertices; i++) {
+    visited[i] = false;
+    this.topSortHelper(i, visited, stack);
+  }
+  for (let i = 0; i < stack.length; i++) {
+    if (stack[i] !== undefined && stack[i] !== false) {
+      console.log(this.vertexList[stack[i]]);
+    }
+  }
+}
+
+/**
+ * 构建一个方法将当前顶点标记为已访问，然后递归访问当前顶点邻接表中的每一个相邻顶点，标记这些顶点为已访问。最后，将当前顶点入栈
+ */
+function topSortHelper(v, visited, stack) {
+  visited[v] = true;
+  for (let w in this.adj[v]) {
+    let item = this.adj[v][w];
+    if (!visited[item]) {
+      this.topSortHelper(visited[item], visited, stack);
+    }
+  }
+  stack.push(v);
+}
+
+/**
+ * 构建一个新的展示方法
+ */
+function newShowGraph () {
+  let visited = [];
+  for (let i = 0; i < this.vertices; ++i) {
+    let str = `${this.vertexList[i]} -> `;
+    visited.push(this.vertexList[i]);
+    for (let j = 0; j < this.vertices; ++j) {
+      if (this.adj[i][j] !== undefined) {
+        if (visited.indexOf(this.vertexList[j]) < 0) {
+          str += `${this.vertexList[j]} `;
+        }
+      }
+    }
+    console.log(str);
+    visited.pop();
+  }
+}
 
 exports.Graph = Graph;
