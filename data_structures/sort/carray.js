@@ -12,6 +12,8 @@ function CArray (numElements) {
   this.clear = clear;
   this.setData = setData;
   this.swap = swap;
+  this.bubbleSort = bubbleSort;
+  this.selectionSort = selectionSort;
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
   }
@@ -68,6 +70,39 @@ function swap (arr, index1, index2) {
   let temp = arr[index1];
   arr[index1] = arr[index2];
   arr[index2] = temp;
+}
+
+/**
+ * 冒泡排序
+ * 最慢且最容易实现，循环次数多
+ */
+function bubbleSort () {
+  let numElements = this.dataStore.length;
+  let temp;
+  for (let outer = numElements; outer >= 2; --outer) {
+    for (let inner = 0; inner <= outer - 1; ++inner) {
+      if (this.dataStore[inner] > this.dataStore[inner + 1]) {
+        swap(this.dataStore, inner, inner + 1);
+      }
+    }
+  }
+}
+
+/**
+ * 选择排序
+ * 每次都在当前数据中寻找最小的的数据进行位置互换
+ */
+function selectionSort () {
+  let min;
+  for (let outer = 0; outer < this.dataStore.length - 1; ++outer) {
+    min = outer;
+    for (let inner = outer + 1; inner < this.dataStore.length; ++inner) {
+      if (this.dataStore[min] > this.dataStore[inner]) {
+        min = inner;
+      }
+    }
+    swap(this.dataStore, outer, min);
+  }
 }
 
 exports.CArray = CArray;
