@@ -81,3 +81,11 @@ myNums.shellSort();
 myNums.clear(); // 数据初始化
 myNums.setData(); // 生成新的随机数
 myNums.shellSort1();
+/**
+ * 百万级数据排序
+ */
+console.log('百万级数据排序：');
+numElements = 1000000;
+myNums = new CArray(numElements);
+myNums.setData(); // 生成新的随机数
+myNums.shellSort1();
