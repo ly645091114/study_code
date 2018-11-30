@@ -14,6 +14,7 @@ function CArray (numElements) {
   this.swap = swap;
   this.bubbleSort = bubbleSort;
   this.selectionSort = selectionSort;
+  this.insertionSort = insertionSort;
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
   }
@@ -78,7 +79,7 @@ function swap (arr, index1, index2) {
  */
 function bubbleSort () {
   let numElements = this.dataStore.length;
-  let temp;
+  let start = new Date().getTime();
   for (let outer = numElements; outer >= 2; --outer) {
     for (let inner = 0; inner <= outer - 1; ++inner) {
       if (this.dataStore[inner] > this.dataStore[inner + 1]) {
@@ -86,6 +87,8 @@ function bubbleSort () {
       }
     }
   }
+  let end = new Date().getTime();
+  console.log(`冒泡排序耗时：${end - start}ms`);
 }
 
 /**
@@ -94,6 +97,7 @@ function bubbleSort () {
  */
 function selectionSort () {
   let min;
+  let start = new Date().getTime();
   for (let outer = 0; outer < this.dataStore.length - 1; ++outer) {
     min = outer;
     for (let inner = outer + 1; inner < this.dataStore.length; ++inner) {
@@ -103,6 +107,30 @@ function selectionSort () {
     }
     swap(this.dataStore, outer, min);
   }
+  let end = new Date().getTime();
+  console.log(`选择排序耗时：${end - start}ms`);
+}
+
+/**
+ * 插入排序
+ * 类似于人类按数字或者字母顺序对数据进行排序
+ * 最快的基本排序
+ */
+function insertionSort () {
+  let temp;
+  let inner;
+  let start = new Date().getTime();
+  for (let outer = 1; outer <= this.dataStore.length - 1; ++outer) {
+    temp = this.dataStore[outer];
+    inner = outer;
+    while (inner > 0 && (this.dataStore[inner - 1] >= temp)) {
+      this.dataStore[inner] = this.dataStore[inner - 1];
+      --inner;
+    }
+    this.dataStore[inner] = temp;
+  }
+  let end = new Date().getTime();
+  console.log(`插入排序耗时：${end - start}ms`);
 }
 
 exports.CArray = CArray;
