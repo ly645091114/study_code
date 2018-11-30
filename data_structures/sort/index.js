@@ -35,17 +35,17 @@ myNums.insertionSort();
 /**
  * 十万级数据排序
  */
-console.log('十万级数据排序：');
-numElements = 100000;
-myNums = new CArray(numElements);
-myNums.setData();
-myNums.bubbleSort();
-myNums.clear(); // 数据初始化
-myNums.setData(); // 生成新的随机数
-myNums.selectionSort();
-myNums.clear(); // 数据初始化
-myNums.setData(); // 生成新的随机数
-myNums.insertionSort();
+// console.log('十万级数据排序：');
+// numElements = 100000;
+// myNums = new CArray(numElements);
+// myNums.setData();
+// myNums.bubbleSort();
+// myNums.clear(); // 数据初始化
+// myNums.setData(); // 生成新的随机数
+// myNums.selectionSort();
+// myNums.clear(); // 数据初始化
+// myNums.setData(); // 生成新的随机数
+// myNums.insertionSort();
 /**
  * 百万级数据排序
  */
@@ -60,3 +60,24 @@ myNums.insertionSort();
 // myNums.clear(); // 数据初始化
 // myNums.setData(); // 生成新的随机数
 // myNums.insertionSort();
+
+/**
+ * 希尔排序测试
+ */
+console.log('希尔排序：');
+numElements = 10;
+myNums = new CArray(numElements);
+myNums.setData();
+console.log(`排序前：${myNums.toString()}`);
+myNums.shellSort();
+console.log('万级数据排序：');
+numElements = 10000;
+myNums = new CArray(numElements);
+myNums.setData(); // 生成新的随机数
+myNums.insertionSort();
+myNums.clear(); // 数据初始化
+myNums.setData(); // 生成新的随机数
+myNums.shellSort();
+myNums.clear(); // 数据初始化
+myNums.setData(); // 生成新的随机数
+myNums.shellSort1();
