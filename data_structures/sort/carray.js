@@ -17,6 +17,8 @@ function CArray (numElements) {
   this.insertionSort = insertionSort;
   this.shellSort = shellSort;
   this.shellSort1 = shellSort1;
+  this.mergeSort = mergeSort;
+  this.mergeArrays = mergeArrays;
   this.gaps = [5, 3, 1];
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
@@ -181,6 +183,76 @@ function shellSort1 () {
   }
   let end = new Date().getTime();
   console.log(`动态间隔序列希尔排序耗时：${end - start}ms`);
+}
+
+/**
+ * 归并排序
+ * 把一系列排序好的的子序列合并成一个大的完整有序序列，理论上来讲这个算法很容易实现。
+ * 需要两个排好序的子数组，然后通过比较数据大小，先从小的数据开始插入，最后合并得到第三个数组。
+ * 弊端：对一个大数据集进行排序时，我们需要相当大的空间来合并存储两个子数组。耗费内存大。
+ * 归并排序类型：自顶向下，自底向上
+ * 自顶向下（通常实现方式），JavaScript 不太可行，递归深度太深
+ * 自底向上（非递归，迭代版本），将数据集分解为一组只有一个元素的数组。然后创建子数组将他们慢慢合起来，每次合并都保存一部分排序好的数据，直到最后剩下的这个数组所有的数据都已排序完毕
+ */
+function mergeSort () {
+  let start = new Date().getTime();
+  if (this.dataStore.length < 2) { // 只有一位数据不需要排序
+    return true;
+  }
+  let step = 1;
+  let left;
+  let right;
+  while(step < this.dataStore.length) {
+    left = 0;
+    right = step;
+    while (right + step <= this.dataStore.length) {
+      mergeArrays(this.dataStore, left, left + step, right, right + step);
+      left = right + step;
+      right = left + step;
+    }
+    if (right < this.dataStore) {
+      mergeArrays(this.dataStore, left, left + step, right, this.dataStore.length);
+    }
+    step *= 2;
+  }
+  let end = new Date().getTime();
+  console.log(`归并排序耗时：${end - start}ms`);
+}
+
+/**
+ * 合并子数列的方法
+ * @param { Array } arr 操作数组
+ * @param { Number } startLeft 左子列开始
+ * @param { Number } stopLeft 左子列结束
+ * @param { Number } startRight 右子列开始
+ * @param { Number } stopRight 右子列结束
+ */
+function mergeArrays (arr, startLeft, stopLeft, startRight, stopRight) {
+  let rightArr = new Array(stopRight - startRight + 1);
+  let leftArr = new Array(stopLeft - startLeft + 1);
+  let k = startRight;
+  for (let i = 0; i < (rightArr.length - 1); ++i) { // 右数组填入数据
+    rightArr[i] = arr[k];
+    ++k;
+  }
+  k = startLeft;
+  for (let i = 0; i < (leftArr.length - 1); ++i) { // 左数组填入数据
+    leftArr[i] = arr[k];
+    ++k;
+  }
+  rightArr[rightArr.length - 1] = Infinity; // 哨兵值
+  leftArr[leftArr.length - 1] = Infinity; // 哨兵值
+  let m = 0;
+  let n = 0;
+  for (let i = startLeft; i < stopRight; ++i) {
+    if (leftArr[m] <= rightArr[n]) {
+      arr[i] = leftArr[m];
+      m++;
+    } else {
+      arr[i] = rightArr[n];
+      n++;
+    }
+  }
 }
 
 exports.CArray = CArray;

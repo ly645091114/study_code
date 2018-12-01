@@ -18,6 +18,16 @@ myNums.setData(); // 生成新的随机数
 console.log(`插入排序前：${myNums.toString()}`);
 myNums.insertionSort();
 console.log(`插入排序后：${myNums.toString()}`);
+myNums.clear(); // 数据初始化
+myNums.setData(); // 生成新的随机数
+console.log(`动态间隔序列希尔排序前：${myNums.toString()}`);
+myNums.shellSort1();
+console.log(`动态间隔序列希尔排序后：${myNums.toString()}`);
+myNums.clear(); // 数据初始化
+myNums.setData(); // 生成新的随机数
+console.log(`归并排序前：${myNums.toString()}`);
+myNums.mergeSort();
+console.log(`归并排序后：${myNums.toString()}`);
 /**
  * 万级数据排序
  */
@@ -89,3 +99,5 @@ numElements = 1000000;
 myNums = new CArray(numElements);
 myNums.setData(); // 生成新的随机数
 myNums.shellSort1();
+myNums.setData(); // 生成新的随机数
+myNums.mergeSort();
