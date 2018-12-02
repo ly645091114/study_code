@@ -21,6 +21,7 @@ function CArray (numElements) {
   this.mergeArrays = mergeArrays;
   this.qSort = qSort;
   this.quickSort = quickSort;
+  this.insideSort = insideSort;
   this.gaps = [5, 3, 1];
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
@@ -291,6 +292,17 @@ function quickSort () {
   this.dataStore = qSort(this.dataStore);
   let end = new Date().getTime();
   console.log(`快速排序耗时：${end - start}ms`);
+}
+
+/**
+ * JS 内置排序算法
+ * v8源码用的是cpp编译，里面有很多层优化速度相对比以上算法快
+ */
+function insideSort () {
+  let start = new Date().getTime();
+  this.dataStore.sort();
+  let end = new Date().getTime();
+  console.log(`JS内置排序耗时：${end - start}ms`);
 }
 
 exports.CArray = CArray;
