@@ -19,6 +19,8 @@ function CArray (numElements) {
   this.shellSort1 = shellSort1;
   this.mergeSort = mergeSort;
   this.mergeArrays = mergeArrays;
+  this.qSort = qSort;
+  this.quickSort = quickSort;
   this.gaps = [5, 3, 1];
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
@@ -253,6 +255,42 @@ function mergeArrays (arr, startLeft, stopLeft, startRight, stopRight) {
       n++;
     }
   }
+}
+
+/**
+ * 快速排序
+ * 是处理大数据集最快的排序算法之一。它是一种分而治之的算法，通过递归的方法将数据依次分解为包含较小元素和较大元素的不同子序列。
+ * 该算法不断重复这个步骤直到所有数据都是有序的
+ * 这个算法实现要在列表中选择一个元素作为基准值。数据排序围绕基准值进行，将列表中小于基准值的元素移到数组的底部，将大于基准值的元素移到数组的顶部。
+ * 1.选择一个基准元素，将列表分隔成两个子序列；
+ * 2.对列表重新排序，将所有小于基准值的元素放在基准值的前面，所有大于基准值的元素放在基准值的后面；
+ * 3.分别对较小元素的子序列和较大元素的子序列重复步骤 1 和 2。
+ */
+function qSort (list) {
+  if (list.length === 0) { // 首先检查数组的长度是否为0。如果是，那么这个数组就不需要任何排序，函数直接返回。
+    return [];
+  }
+  let lesser = []; // 否则创建两个数组，一个用来存放比基准值小的元素，另一个用来存放比基准值大的元素。这里的基准值取自数组的第一个元素。
+  let greater = [];
+  let pivot = list[0];
+  for (let i = 1; i < list.length; i++) {
+    if (list[i] < pivot) {
+      lesser.push(list[i]);
+    } else {
+      greater.push(list[i]);
+    }
+  }
+  return qSort(lesser).concat(pivot, qSort(greater)); // 递归执行
+}
+
+/**
+ * 快排方法
+ */
+function quickSort () {
+  let start = new Date().getTime();
+  this.dataStore = qSort(this.dataStore);
+  let end = new Date().getTime();
+  console.log(`快速排序耗时：${end - start}ms`);
 }
 
 exports.CArray = CArray;

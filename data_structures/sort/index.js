@@ -28,6 +28,11 @@ myNums.setData(); // 生成新的随机数
 console.log(`归并排序前：${myNums.toString()}`);
 myNums.mergeSort();
 console.log(`归并排序后：${myNums.toString()}`);
+myNums.clear(); // 数据初始化
+myNums.setData(); // 生成新的随机数
+console.log(`快速排序前：${myNums.toString()}`);
+myNums.quickSort();
+console.log(`快速排序后：${myNums.toString()}`);
 /**
  * 万级数据排序
  */
@@ -42,6 +47,9 @@ myNums.selectionSort();
 myNums.clear(); // 数据初始化
 myNums.setData(); // 生成新的随机数
 myNums.insertionSort();
+myNums.clear(); // 数据初始化
+myNums.setData(); // 生成新的随机数
+myNums.mergeSort();
 /**
  * 十万级数据排序
  */
@@ -101,3 +109,5 @@ myNums.setData(); // 生成新的随机数
 myNums.shellSort1();
 myNums.setData(); // 生成新的随机数
 myNums.mergeSort();
+myNums.setData(); // 生成新的随机数
+myNums.quickSort();
