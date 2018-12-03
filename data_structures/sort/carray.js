@@ -23,6 +23,8 @@ function CArray (numElements) {
   this.quickSort = quickSort;
   this.insideSort = insideSort;
   this.gaps = [5, 3, 1];
+  this.seqSearch = seqSearch;
+  this.findMin = findMin;
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
   }
@@ -303,6 +305,56 @@ function insideSort () {
   this.dataStore.sort();
   let end = new Date().getTime();
   console.log(`JS内置排序耗时：${end - start}ms`);
+}
+
+/**
+ * 检索算法
+ * 两种查找方式：
+ * 1.顺序查找 （适用于元素随机排列的列表）
+ * 2.二分查找 （适用于元素已排序的列表）二分查找效率更高，但必须在进行查找之前花费额外的时间将列表中的元素排序
+ * 顺序查找：从列表第一个元素开始对列表逐个进行判断，直到找到了想要的结果，或者直到列表结尾也没有找到。（有时称线性查找，属于暴力查找技巧的一种）
+ * 在执行过程中可能会访问到数据结构里的所有元素。
+ * @param { Number } data 查找元素
+ */
+function seqSearch (data) {
+  let start = new Date().getTime();
+  for (let i = 0; i < this.dataStore.length; ++i) {
+    if (this.dataStore[i] === data) {
+      let end = new Date().getTime();
+      if (i > 0) { // 使用自组织数据（通过频繁查找到的元素置于数据集的起始位置来最小化查找次数）
+        // 比如：一个图书管理员，一天之内会被问到好几次同一本参考书，那么他会把书放在触手可及的地方，经过多次查找后，最频繁的元素会从原来位置移动到数据集的起始位置。数据的位置并非由程序员在程序执行前就组织好，而是在程序运行过程中由程序自动组织。（参考"80 - 20原则"的概率分布（帕累托分布））
+        swap(this.dataStore, i, i - 1);
+      }
+      console.log(`查询耗时：${end - start}ms`);
+      return i;
+    }
+  }
+  let end = new Date().getTime();
+  console.log(`查询耗时：${end - start}ms`);
+  return -1;
+}
+
+/**
+ * 查找最小值 (查找最大值的思路与查找最小值一样)
+ * 1.将数组的第一个元素赋值给一个变量，把这个变量作为最小值；
+ * 2.开始遍历数组，从第二个元素开始依次同当前最小值进行比较；
+ * 3.如果当前元素数值小于当前最小值，则将当前元素设为新的最小值；
+ * 4.移动到下一个元素，并且重复步骤3；
+ * 5.当程序结束时，这个变量中存储的就是最小值。
+ */
+function findMin () {
+  let start = new Date().getTime();
+  let min = this.dataStore[0];
+  let index = 0;
+  for (let i = 1; i < this.dataStore.length; ++i) {
+    if (this.dataStore[i] < min) {
+      min = this.dataStore[i];
+      index = i;
+    }
+  }
+  let end = new Date().getTime();
+  console.log(`查询最小值耗时：${end - start}ms, 最小值在第${index + 1}位`);
+  return min;
 }
 
 exports.CArray = CArray;

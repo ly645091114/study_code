@@ -38,6 +38,10 @@ myNums.setData(); // 生成新的随机数
 console.log(`JS内置排序前：${myNums.toString()}`);
 myNums.quickSort();
 console.log(`JS内置排序后：${myNums.toString()}`);
+myNums.clear(); // 数据初始化
+myNums.setData(); // 生成新的随机数
+console.log(`内含数据：${myNums.toString()}`);
+console.log(`7${myNums.seqSearch(7) > 0 ? '存在' : '不存在'}于数组中。`);
 /**
  * 万级数据排序
  */
@@ -111,10 +115,16 @@ console.log('百万级数据排序：');
 numElements = 1000000;
 myNums = new CArray(numElements);
 myNums.setData(); // 生成新的随机数
-myNums.shellSort1();
-myNums.setData(); // 生成新的随机数
-myNums.mergeSort();
-myNums.setData(); // 生成新的随机数
-myNums.quickSort();
-myNums.setData(); // 生成新的随机数
-myNums.insideSort();
+let index = myNums.seqSearch(23);
+console.log(`23${index > 0 ? '存在' : '不存在'}于数组中，位置在第${index + 1}位`);
+index = myNums.seqSearch(23);
+console.log(`23${index > 0 ? '存在' : '不存在'}于数组中，位置在第${index + 1}位`);
+console.log(`最小值为：${myNums.findMin()}`);
+// myNums.setData(); // 生成新的随机数
+// myNums.shellSort1();
+// myNums.setData(); // 生成新的随机数
+// myNums.mergeSort();
+// myNums.setData(); // 生成新的随机数
+// myNums.quickSort();
+// myNums.setData(); // 生成新的随机数
+// myNums.insideSort();
