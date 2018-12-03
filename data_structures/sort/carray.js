@@ -25,6 +25,7 @@ function CArray (numElements) {
   this.gaps = [5, 3, 1];
   this.seqSearch = seqSearch;
   this.findMin = findMin;
+  this.binSearch = binSearch;
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
   }
@@ -356,5 +357,43 @@ function findMin () {
   console.log(`查询最小值耗时：${end - start}ms, 最小值在第${index + 1}位`);
   return min;
 }
+
+/**
+ * 二分查找算法
+ * 用于查找有序数据，二分查找算法比顺序查找算法更高效。
+ * 原理：想象在玩猜数字游戏，这个数字位于1 ~ 100之间，而要猜的数字是由你的朋友来选定的。游戏规则是，你每猜一个数字，你的朋友将会做出以下三种回应中的一种：
+ * 1.猜对了；
+ * 2.猜大了；
+ * 3.猜小了。
+ * 算法描述：
+ * 1.将数组的第一个位置设置为下边界（0）；
+ * 2.将数组最后一个元素所在的位置设置为上边界（数组的长度减1）；
+ * 3.若下边界等于或小于上边界，则做如下操作：
+ *  a.将中点设置为（上边界加上下边界）除以2；
+ *  b.如果中点的元素小于查询的值，则将下边界设置为中点元素所在下标加1；
+ *  c.如果中点的元素大于查询的值，则将上边界设置为中点元素所在下标减1；
+ *  d.否则中点元素即为要查找的数据，可以进行返回。
+ * @param { Number } data 查找元素
+ */
+  function binSearch (data) {
+    let start = new Date().getTime();
+    let upperBound = this.dataStore.length - 1;
+    let lowerBound = 0;
+    while (lowerBound <= upperBound) {
+      let mid = Math.floor((upperBound + lowerBound) / 2);
+      if (this.dataStore[mid] < data) {
+        lowerBound = mid + 1;
+      } else if (this.dataStore[mid] > data) {
+        upperBound = mid - 1;
+      } else {
+        let end = new Date().getTime();
+        console.log(`查询耗时：${end - start}ms`);
+        return mid;
+      }
+    }
+    let end = new Date().getTime();
+    console.log(`查询耗时：${end - start}ms`);
+    return -1;
+  }
 
 exports.CArray = CArray;
