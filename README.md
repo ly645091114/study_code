@@ -87,10 +87,11 @@
       - `index.js` 二叉查找树功能测试
       - `tree.js` 二叉查找树基础
     - `graph` 图
-      - `tree.js` 图基础 
+      - `tree.js` 图基础
       - `index.js` 图功能测试
     - `sort` 排序算法
-      - `carray.js` 数组测试类  
+      - `algorithm.js` 高级算法
+      - `carray.js` 数组测试类
       - `index.js` 排序功能测试
   - `ES6`
   - `node`
