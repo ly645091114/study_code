@@ -26,6 +26,7 @@ function CArray (numElements) {
   this.seqSearch = seqSearch;
   this.findMin = findMin;
   this.binSearch = binSearch;
+  this.count = count;
   for (let i = 0; i < numElements; ++i) {
     this.dataStore[i] = i;
   }
@@ -375,25 +376,55 @@ function findMin () {
  *  d.否则中点元素即为要查找的数据，可以进行返回。
  * @param { Number } data 查找元素
  */
-  function binSearch (data) {
-    let start = new Date().getTime();
-    let upperBound = this.dataStore.length - 1;
-    let lowerBound = 0;
-    while (lowerBound <= upperBound) {
-      let mid = Math.floor((upperBound + lowerBound) / 2);
-      if (this.dataStore[mid] < data) {
-        lowerBound = mid + 1;
-      } else if (this.dataStore[mid] > data) {
-        upperBound = mid - 1;
+function binSearch (data) {
+  let start = new Date().getTime();
+  let upperBound = this.dataStore.length - 1;
+  let lowerBound = 0;
+  while (lowerBound <= upperBound) {
+    let mid = Math.floor((upperBound + lowerBound) / 2);
+    if (this.dataStore[mid] < data) {
+      lowerBound = mid + 1;
+    } else if (this.dataStore[mid] > data) {
+      upperBound = mid - 1;
+    } else {
+      let end = new Date().getTime();
+      console.log(`查询耗时：${end - start}ms`);
+      return mid;
+    }
+  }
+  let end = new Date().getTime();
+  console.log(`查询耗时：${end - start}ms`);
+  return -1;
+}
+
+/**
+ * 基于二分查找算法计算重复次数
+ * 当通过二分查找算法找到某个值时，如果在数据集中还有其他相同的值出现，那么该函数会定位在类似值的附近。
+ * 函数中找到的值其实是多个该值中位置居中的那一个。这是二分查找算法的本质。
+ * 所以一个统计重复值的函数要怎么做才能确保统计到了数据集中出现的所有重复的值呢？最简单的解决方案是写两个循环，一个对数据集向下遍历，或者向左遍历，统计重复次数；一个向上或者向右遍历，统计重复次数。
+ * @param { Number } data 查找元素
+ */
+function count (data) {
+  let count = 0;
+  let position = this.binSearch(data);
+  if (position > -1) {
+    ++count;
+    for (let i = position - 1; i > 0; --i) {
+      if (this.dataStore[i] === data) {
+        ++count;
       } else {
-        let end = new Date().getTime();
-        console.log(`查询耗时：${end - start}ms`);
-        return mid;
+        break;
       }
     }
-    let end = new Date().getTime();
-    console.log(`查询耗时：${end - start}ms`);
-    return -1;
+    for (let i = position + 1; i < this.dataStore.length; ++i) {
+      if (this.dataStore[i] === data) {
+        ++count;
+      } else {
+        break;
+      }
+    }
   }
+  return count;
+}
 
 exports.CArray = CArray;

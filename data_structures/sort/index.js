@@ -47,6 +47,9 @@ myNums.setData(); // 生成新的随机数
 myNums.quickSort();
 console.log(`内含数据：${myNums.toString()}`);
 console.log(`7${myNums.binSearch(7) > 0 ? '存在' : '不存在'}于数组中。`);
+myNums.dataStore = [0, 2, 3, 4, 7, 7, 7, 7, 8, 9];
+console.log(`内含数据：${myNums.toString()}`);
+console.log(`7在数组中的个数为${myNums.count(7)}个`);
 /**
  * 万级数据排序
  */
@@ -129,6 +132,7 @@ myNums.setData(); // 生成新的随机数
 myNums.quickSort();
 index = myNums.binSearch(888);
 console.log(`888${index > 0 ? '存在' : '不存在'}于数组中${index > 0 ? `，位置在第${index + 1}位` : ''}`);
+console.log(`888在数组中的个数为${myNums.count(888)}个`);
 // myNums.setData(); // 生成新的随机数
 // myNums.shellSort1();
 // myNums.setData(); // 生成新的随机数
@@ -137,3 +141,7 @@ console.log(`888${index > 0 ? '存在' : '不存在'}于数组中${index > 0 ? `
 // myNums.quickSort();
 // myNums.setData(); // 生成新的随机数
 // myNums.insideSort();
+
+/**
+ * 总结：在这个超高速处理器的时代，除非面向大数据集，否则要测量顺序查找和二分查找耗时上的区别变得越来越困难。然而，处理大数据集时二分查找要比顺序查找速度快，这一观点在数学理论上已经得到了证明。这是由于在决定算法性能的每一步循环嵌套中，二分查找减少了一半的查找量（数组中的元素）。
+ */
