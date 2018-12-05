@@ -149,6 +149,23 @@ console.log(`888在数组中的个数为${myNums.count(888)}个`);
  /**
   * 高级算法测试
   */
-const { doRecurFib, doDynFib } = require('./algorithm');
+const { doRecurFib, doDynFib, doIterFib, knapsack, dKnapsack, makeChange } = require('./algorithm');
 console.log(doRecurFib(30));
 console.log(doDynFib(1000));
+console.log(doIterFib(1000));
+/**
+ * 背包问题
+ */
+let value = [4, 5, 10, 11, 13];
+let size = [3, 4, 7, 8, 9];
+let capacity = 16;
+let n = 5;
+console.log(`递归计算背包问题结果：${knapsack(capacity, size, value, n)}`);
+console.log(`动态规划计算背包问题结果：${dKnapsack(capacity, size, value, n)}`);
+
+/**
+ * 贪心算法：找零问题
+ */
+let origAmt = 63;
+let coins = [10, 25, 1, 5];
+makeChange(origAmt, coins);

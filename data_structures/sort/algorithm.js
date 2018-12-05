@@ -21,6 +21,7 @@ function recurFib (n) {
 
 /**
  * 斐波拉契数列递归执行方法
+ * @param { Number } n 数列长度
  */
 function doRecurFib (n) {
   let start = new Date().getTime();
@@ -54,6 +55,7 @@ function dynFib (n) {
 
 /**
  * 斐波拉契数列动态规划执行方法
+ * @param { Number } n 数列长度
  */
 function doDynFib (n) {
   let start = new Date().getTime();
@@ -63,7 +65,117 @@ function doDynFib (n) {
   return val;
 }
 
+/**
+ * 针对业务逻辑优化动态规划的斐波拉契数列
+ * 使用迭代方案计算斐波拉契数列时，是可以不使用数组的。
+ * 需要用到数组的原因是因为动态规划算法通常需要将中间结果保存起来。
+ * 迭代版本的斐波拉契数列
+ * @param { Number } n 数列长度
+ */
+function iterFib (n) {
+  let last = 1;
+  let nextLast = 1;
+  let result = 1;
+  for (let i = 2; i < n; ++i) {
+    result = last + nextLast;
+    nextLast = last;
+    last = result;
+  }
+  return result;
+}
+
+/**
+ * 迭代版本的斐波拉契数列
+ * @param { Number } n 数列长度
+ */
+function doIterFib (n) {
+  let start = new Date().getTime();
+  let val = iterFib(n);
+  let end = new Date().getTime();
+  console.log(`迭代版本斐波拉契耗时：${end - start}ms`);
+  return val;
+}
+
+/**
+ * 经典问题：背包问题
+ * 试想你是一个保险箱大盗，打开一个装满奇珍异宝的保险箱，但是你必须将这些宝贝放入你的小背包中。保险箱中的物品规格和价值不同。你希望自己的背包装进的宝贝总价值最大。
+ * 定义一个比较大小的方法
+ * @param { Number } a 参数a
+ * @param { Number } b 参数b
+ * @return { Number } 大的一方
+ */
+function max (a, b) {
+  return (a > b) ? a : b;
+}
+
+/**
+ * 递归实现背包问题
+ * @param { Number } capacity 容积
+ * @param { Array } size 体积数组
+ * @param { Array } value 价值数组
+ * @param { Number } n 物品个数
+ */
+function knapsack (capacity, size, value, n) {
+  if (n === 0 || capacity === 0) {
+    return 0;
+  }
+  if (size[n - 1] > capacity) {
+    return knapsack(capacity, size, value, n - 1);
+  } else {
+    return max(value[n - 1] + knapsack(capacity - size[n - 1], size, value, n - 1), knapsack(capacity, size, value, n - 1));
+  }
+}
+
+/**
+ * 动态规划实现背包问题
+ */
+function dKnapsack (capacity, size, value, n) {
+  let K = [];
+  for (let i = 0; i <= capacity + 1; i++) {
+    K[i] = [];
+  }
+  for (let i = 0; i <= n; i++) {
+    for (let w = 0; w <= capacity; w++) {
+      if (i === 0 || w === 0) {
+        K[i][w] = 0;
+      } else if (size[i - 1] <= w) {
+        K[i][w] = max(value[i - 1] + K[i - 1][w - size[i - 1]], K[i - 1][w]);
+      } else {
+        K[i][w] = K[i - 1][w];
+      }
+    }
+  }
+  return K[n][capacity];
+}
+
+/**
+ * 贪心算法：总是会选择当下的最优解，而不去考虑这一次的选择会不会对未来的选择造成影响。使用贪心算法通常表明，实现者希望做出的这一系列局部“最优”选择能够带来最终的整体“最优”选择。如果是这样的话，该算法将会产生一个最优解，否则，则会得到一个次优解。然而，对很多问题来说，寻找最优解很麻烦，这么做不值得，所以使用贪心算法足够了。
+ * 贪心算法实现找零问题
+ * 假设现在有以下面额的纸币，如何使用最优的方式去找零
+ * @param { Number } origAmt 找零金额
+ * @param { Array } coins 纸币面额
+ */
+function makeChange (origAmt, coins) {
+  let arr = coins.slice();
+  arr.sort((a, b) => {
+    return a - b;
+  });
+  let remainAmt = 0;
+  while (arr.length > 0) {
+    let coin = arr.pop();
+    if (origAmt % coin < origAmt) {
+      console.log(`${coin}面额数量：${parseInt(origAmt / coin)}`);
+      remainAmt = origAmt % coin;
+      origAmt = remainAmt;
+    }
+  }
+}
+
 exports = module.exports = {
   doRecurFib,
-  doDynFib
+  doDynFib,
+  doIterFib,
+  knapsack,
+  dKnapsack,
+  makeChange
 }

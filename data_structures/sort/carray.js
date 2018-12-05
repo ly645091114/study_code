@@ -304,7 +304,9 @@ function quickSort () {
  */
 function insideSort () {
   let start = new Date().getTime();
-  this.dataStore.sort();
+  this.dataStore.sort((a, b) => {
+    return a - b;
+  });
   let end = new Date().getTime();
   console.log(`JS内置排序耗时：${end - start}ms`);
 }
