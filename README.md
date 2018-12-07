@@ -94,6 +94,8 @@
       - `carray.js` 数组测试类
       - `index.js` 排序功能测试
   - `ES6`
+    - `base` 基础篇
+      - `let.js` let 与 var 的区别
   - `node`
   - `README.md`
 
