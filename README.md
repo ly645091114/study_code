@@ -97,6 +97,7 @@
     - `base` 基础篇
       - `let.js` let 与 var 的区别
   - `node`
+    - `深入浅出Node.js` 思维导图
   - `README.md`
 
 ## 执行文件
