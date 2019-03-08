@@ -1,0 +1,10 @@
+.c-menu {
+  border-right: 1px solid $col-normal-gray;
+  left: 30px;
+  height: calc(100% - 61px);
+  padding: 20px 0;
+  overflow-y: auto;
+  position: fixed;
+  width: 260px;
+  z-index: $zindex-2;
+}

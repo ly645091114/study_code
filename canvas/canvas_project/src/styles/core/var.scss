@@ -1,0 +1,35 @@
+/**
+ * 声明样式
+ * 所有定义的声明样式均需在末尾备注
+ */
+$font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'PingFang SC', 'Microsoft YaHei', sans-serif; // 字体优先级
+$font-size-base: 14px; // 正文信息
+$font-size-secondary: 13px; // 辅助说明
+$font-size-h2: 16px; // 正常标题
+$font-size-h1: 20px; // 大标题
+$line-height: 1.5; // 行高
+$zindex-1: 100; // 第一层级
+$zindex-2: 200; // 第二层级
+$zindex-3: 300; // 第三层级
+$radius: 2px; // 默认圆角
+$col-white: #fff; // 白色
+$col-theme: #42b983; // 系统主题色
+$col-deep-green: #26b31e; // 深绿
+$col-lighter-green: #E9FAE9; // 高亮绿
+$col-warning: #FFAD00; // 警告色
+$col-danger: #FF4949; // 错误色
+$col-message-blue: #50BFFF; // 消息蓝
+$col-assist-blue: #3388ff; // 辅助蓝
+$col-light-blue: #2B65B6; // 亮蓝
+$col-deep-black: #333333; // 深黑
+$col-light-black: #666666; // 亮黑
+$col-lighter-black: #75839A; // 高亮黑
+$col-hover-black: #3e414f; // hover 黑
+$col-deeper-gray: #999999; // 高深灰
+$col-deep-gray: #CCCCCC; // 深灰
+$col-normal-gray: #DDDDDD; // 普通灰
+$col-assist-gray: #ededed; // 辅助灰
+$col-light-gray: #F4F4F4; // 亮灰
+$col-list-gray: #F5F8Fb; // 列表灰
+$col-lighter-gray: #FAFAFA; // 高亮灰
+ 

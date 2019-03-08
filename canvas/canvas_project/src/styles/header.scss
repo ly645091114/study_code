@@ -1,0 +1,16 @@
+.c-header {
+  box-shadow: 0 0 1px rgba(0,0,0,0.25);
+  height: 60px;
+  left: 0;
+  overflow: hidden;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $zindex-3;
+  &__title {
+    color: $col-theme;
+    font-size: 28px;
+    line-height: 60px;
+  }
+}

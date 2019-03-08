@@ -1,0 +1,54 @@
+/**
+ * 样式入口文件
+ */
+@import './core/var';
+@import './header';
+@import './menu';
+@import './box';
+::-webkit-input-placeholder { // 修复某些 webkit 浏览器中 placeholder 出现偏上现象
+  line-height: normal;
+}
+input, textarea, select, button {
+  font-family: $font-family;
+}
+ul, li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.b-footer {
+  color: $col-lighter-black;
+  opacity: .5;
+  padding: 50px 0 30px;
+  text-align: center;
+  width: 100%;
+  p {
+    color: $col-light-black;
+  }
+}
+::-webkit-scrollbar { // 滚动条样式
+  background-color: $col-white;
+  height: 14px;
+  width: 14px;
+}
+::-webkit-scrollbar-thumb {
+  border: 4px solid $col-white;
+  border-radius: 10px;
+  background-clip: content-box;
+  background: rgba(204,204,204,0.50);
+  &:hover {
+    background: rgba(204,204,204,1);
+  }
+}
+:focus,
+:hover,
+:active,
+:visited { // hover, focus 取消 outline
+  outline: none !important;
+}
