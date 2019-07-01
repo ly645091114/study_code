@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title>HTML 事件处理程序</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  </head>
+  <body>
+    <input type="button" value="Click Me" onclick="console.log('click')">
+    <input type="button" value="花Q" onclick="showMessage()">
+    <script type="text/javascript">
+      function showMessage () {
+        console.log('Hellow World')
+      }
+    </script>
+    <input type="button" value="nsnmn" onclick="console.log(event.type)">
+    <input type="button" value="nsnmn" onclick="console.log(type)">
+    <input type="button" value="nmsl" onclick="console.log(this.value)">
+    <input type="button" value="wdnmd" onclick="console.log(value)">
+    <div id="xixi">
+      <div id="haha">
+        <div id="meme">
+          click me
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      /**
+       * 事件流阶段测试
+       * 事件捕获 -> 处于目标阶段 -> 事件冒泡
+       */
+      let xixi = document.getElementById('xixi')
+      let haha = document.getElementById('haha')
+      let meme = document.getElementById('meme')
+
+      /**
+       * @description 给元素绑定一个点击事件
+       * @param Object element 操作元素
+       * @param Boolean type 事件执行阶段 true: 事件捕获; false: 事件冒泡
+       */
+      const onClick = function (element, type) {
+        if (element.addEventListener) {
+          element.addEventListener('click', function () {
+            console.log(element.id)
+          }, type)
+        }
+      }
+      onClick(xixi, true)
+      onClick(haha, false)
+      onClick(meme, true)
+    </script>
+  </body>
+</html>
