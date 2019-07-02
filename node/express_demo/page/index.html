@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/public/lib/bootstrap/dist/css/bootstrap.css">
+    <title>留言板</title>
+  </head>
+  <body>
+    <header class="container mt-3">
+      <div class="page-header">
+        <h1>Example page header <small>Subtext for header</small></h1>
+        <a class="btn btn-success" href="/post">发表留言</a>
+      </div>
+    </header>
+    
+    <div class="container mt-3">
+      <ul class="list-group">
+        {{each comments}}
+        <li class="list-group-item mt-2">{{ $value.name }}说：{{ $value.message }} <span class="float-right">{{ $value.dateTime }}</span></li>
+        {{/each}}
+      </ul>
+    </div>
+  </body>
+</html>
