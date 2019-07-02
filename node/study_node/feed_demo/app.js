@@ -38,6 +38,8 @@ http.createServer(function (req, res) { // 构建服务实例，一次请求对�
      *  1.状态码设置 302 临时重定向（301 永久重定向）
      *  2.在响应头中通过 Location 告诉 客户端往哪重定向
      * 如果客户端发现收到服务器的响应的状态码是 302 就会自动去响应头找 Location，然后对该地址发起新的请求
+     * 301: 浏览器会缓存
+     * 302: 浏览器不缓存
      */
     res.statusCode = 302
     res.setHeader('Location', '/')
