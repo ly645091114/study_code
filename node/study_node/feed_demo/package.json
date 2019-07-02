@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "bootstrap": "^4.3.1"
+  }
+}
