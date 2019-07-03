@@ -15,7 +15,7 @@ app.use(bodyParser.json())
  * 第一个参数表示，当渲染以 .art 结尾的文件的时候，使用 art-template 模板引擎
  */
 app.engine('html', require('express-art-template'))
-app.set('views', 'page')
+app.set('views', 'page') // 模板渲染约定在 views 绑定的路径拉取模板，默认文件路径是 views 目录
 
 /**
  * Express 为 Response 相应对象提供一个 render 方法
