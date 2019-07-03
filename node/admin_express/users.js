@@ -69,7 +69,9 @@ const add = function (user, callback) {
 }
 
 /**
- * 编辑用户
+ * @description 编辑用户
+ * @param { Object } user 用户数据
+ * @param { Function } callback 回调函数
  */
 const update = function (user, callback) {
   find(function(error, data) {
@@ -96,7 +98,9 @@ const update = function (user, callback) {
 }
 
 /**
- * 删除用户
+ * @description 删除用户
+ * @param { Number } id 用户ID
+ * @param { Function } callback 回调函数
  */
 const del = function (id, callback) {
   find(function(error, data) {
