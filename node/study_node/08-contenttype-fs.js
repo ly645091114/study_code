@@ -39,6 +39,25 @@ server.on('request', function (req, res) {
         }
       })
       break
+    case '/test':
+      fs.readFile('./15-ajax.html', function (error, data) {
+        if (error) {
+          resdata = '文件读取失败！'
+          return res.end(resdata)
+        }
+        res.setHeader('Content-Type', resType('text/html'))
+        res.end(data)
+      })
+      break
+    case '/data.json':
+      fs.readFile('data.json', function (error, data) {
+        if (error) {
+          resdata = '文件读取失败！'
+          return res.end(resdata)
+        }
+        res.end(data)
+      })
+      break
     default:
       break
   }
