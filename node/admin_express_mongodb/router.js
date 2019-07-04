@@ -12,22 +12,14 @@ router.get('/', function (req, res) {
 })
 
 router.get('/users', function (req, res) {
-  let operate = new Promise(function (resolve, reject) {
-    Users.find(function (error, data) {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(data)
-      }
+  Users.find()
+    .then(function (data) {
+      res.render('index.html', {
+        users: data
+      })
+    }, function (error) {
+      console.log('访问失败', error)
     })
-  })
-  operate.then(function (data) {
-    res.render('index.html', {
-      users: data
-    })
-  }, function (error) {
-    console.log('访问失败', error)
-  })
 })
 
 router.get('/users/new', function (req, res) {
@@ -46,52 +38,58 @@ router.post('/users/new', function (req, res) {
    * 把对象转为字符串
    * 字符串再次写入文件
    */
-  Users(req.body).save(function (error) {
-    if (error) {
-      console.log(error)
-      return res.status(400).send('新增用户失败')
-    }
-    res.redirect('/users')
-  })
+  Users(req.body).save()
+    .then(function () {
+      res.redirect('/users')
+    }, function (error) {
+      if (error) {
+        console.log('新增用户失败', error)
+        res.status(400).send('新增用户失败')
+      }
+    })
 })
 
 router.get('/users/edit', function (req, res) {
-  Users.findById(req.query.id, function (error, user) {
-    if (error) {
-      console.log(error)
-      return res.status(500).send('Server error')
-    }
-    res.render('edit.html', {
-      user
+  Users.findById(req.query.id)
+    .then(function (user) {
+      res.render('edit.html', {
+        user
+      })
+    }, function (error) {
+      if (error) {
+        console.log(error)
+        res.status(500).send('Server error')
+      }
     })
-  })
 })
 
 router.post('/users/edit', function (req, res) {
   Users.updateOne({
-    _id: req.body.id
-  },
-  req.body,
-  function (error) {
-    if (error) {
-      console.log(error)
-      return res.status(500).send('更新失败')
-    }
-    res.redirect('/users')
-  })
+      _id: req.body.id
+    },
+    req.body)
+    .then(function () {
+      res.redirect('/users')
+    },  function (error) {
+      if (error) {
+        console.log('更新失败', error)
+        res.status(500).send('更新失败')
+      }
+    })
 })
 
 router.get('/users/delete', function (req, res) {
   Users.deleteOne({
-    _id: req.query.id
-  },
-  function (error) {
-    if (error) {
-      console.log(error)
-      return res.status(500).send('删除失败')
-    }
-    res.redirect('/users')
-  })
+      _id: req.query.id
+    })
+    .then(function () {
+      res.redirect('/users')
+    }, function (error) {
+      if (error) {
+        console.log('删除失败', error)
+        res.status(500).send('删除失败')
+      }
+    })
 })
 
 module.exports = router
