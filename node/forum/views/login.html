@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/public/css/login.css">
+</head>
+
+<body>
+  <div class="main">
+    <div class="header">
+      <h1>告诉我秘密</h1>
+    </div>
+    <form id="login_form">
+      <div class="form-group">
+        <label for="">邮箱</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="">密码</label>
+        <!-- <a class="pull-right" href="">忘记密码？</a> -->
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox">记住我
+        </label>
+      </div>
+      <button type="submit" class="btn btn-success btn-block">告诉我!!</button>
+    </form>
+    <div class="message">
+      <p><a href="/user/register">告诉你我是谁</a></p>
+    </div>
+  </div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script src="/node_modules/blueimp-md5/js/md5.js"></script>
+  <script>
+    $('#login_form').on('submit', function (e) {
+      e.preventDefault()
+      var formData = $(this).serializeArray()
+      let query = {}
+      for (let item of formData) {
+        query[item.name] = item.value
+      }
+      query.password = md5(query.password)
+      $.ajax({
+        url: '/user/login',
+        type: 'post',
+        data: query,
+        dataType: 'json',
+        success: function (data) {
+          let code = data.code
+          if (code === 200) {
+            // 服务端重定向针对异步请求无效
+            window.location.href = '/'
+          } else if (code === 1) {
+            window.alert('?别想白嫖秘密')
+          } else if (code === 500) {
+            window.alert('我暂时不想跟你分享秘密，等下再说')
+          }
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

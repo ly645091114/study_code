@@ -1,0 +1,37 @@
+{{ extend './layouts/index.html' }}
+{{ block 'head' }}
+<style>
+  body {
+    background: #f8f8f8;
+  }
+  a {
+    transition: color .5s;
+  }
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #666;
+  }
+</style>
+{{ /block }}
+{{ block 'content' }}
+  {{ if !user }}
+  <a href="/user/login"><h2>告诉我你是谁</h2></a>
+  {{ /if }}
+  <h2>{{ (user && user.nickname) || name }}告诉你一个秘密</h2>
+  {{ if (user && user.nickname) }}
+    <h2>JavaScript 是世界上最好的语言</h2>
+    <a href="/user/logout"><h2>知道了嘛</h2></a>
+  {{ /if }}
+{{ /block }}
+{{ block 'script' }}
+<script>
+  console.log('Hello World')
+</script>
+{{ /block }}

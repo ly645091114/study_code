@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/public/css/login.css">
+</head>
+
+<body>
+  <div class="main">
+    <div class="header">
+      <h1>我是</h1>
+    </div>
+    <form id="register_form">
+      <div class="form-group">
+        <label for="email">邮箱</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="nickname">昵称</label>
+        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname">
+      </div>
+      <div class="form-group">
+        <label for="password">密码</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-success btn-block">好了告诉我吧</button>
+    </form>
+    <div class="message">
+      <p><a href="/user/login">直接告诉我</a></p>
+    </div>
+  </div>
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script src="/node_modules/blueimp-md5/js/md5.js"></script>
+  <script>
+    $('#register_form').on('submit', function (e) {
+      e.preventDefault()
+      var formData = $(this).serializeArray()
+      let query = {}
+      for (let item of formData) {
+        query[item.name] = item.value
+      }
+      query.password = md5(query.password)
+      $.ajax({
+        url: '/user/register',
+        type: 'post',
+        data: query,
+        dataType: 'json',
+        success: function (data) {
+          var code = data.code
+          if (code === 200) {
+            // 服务端重定向针对异步请求无效
+            window.location.href = '/'
+          } else if (code === 1) {
+            window.alert('哈哈别想骗我!')
+          } else if (code === 2) {
+            window.alert('哈哈别想骗我!')
+          } else if (code === 500) {
+            window.alert('我暂时不想跟你分享秘密，等下再说')
+          }
+        }
+      })
+    })
+  </script>
+</body>
+</html>
