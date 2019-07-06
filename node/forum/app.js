@@ -3,6 +3,7 @@ let path = require('path')
 let bodyParser = require('body-parser')
 let session = require('express-session')
 let mongoose = require('mongoose')
+let cookieParser = require('cookie-parser')
 let MongoStore = require('connect-mongo')(session)
 
 let app = express()
@@ -16,6 +17,8 @@ try {
   console.log(`Connect Error: ${error}`)
 }
 
+app.use(cookieParser())
+
 /**
  * 挂载 Session 和 Cookie 中间件 express-session
  * 使用：配置中间件后，通过 req.session 来访问 和 设置Session 成员
@@ -28,6 +31,10 @@ app.use(session({
   name: 'forumapp',
   resave: false,
   saveUninitialized: true, // 无论是否使用 Session，都默认直接分配一把钥匙
+  cookie: {
+    httpOnly: true,
+    maxAge: 1 * 24 * 60 * 60 * 1000 //默认单位 1000 毫秒
+  },
   store: new MongoStore({
     url: 'mongodb://localhost/forum'
   })

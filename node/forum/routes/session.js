@@ -23,6 +23,7 @@ router.post('/login', async function (req, res) {
       .then(function (user) {
         if (user) {
           req.session.user = user // 登录成功，使用 Session 记录用户登录状态
+          req.cookies.user = user // 登录成功，使用 Cookies 记录用户登录状态
           return res.status(200).json({
             success: true,
             code: 200,
@@ -81,6 +82,7 @@ router.post('/register', async function (req, res) {
       .save()
       .then(function (user) {
         req.session.user = user // 注册成功，使用 Session 记录用户登录状态
+        req.cookies.user = user // 登录成功，使用 Cookies 记录用户登录状态
       })
 
     res.status(200).json({
@@ -100,6 +102,7 @@ router.post('/register', async function (req, res) {
 
 router.get('/logout', function (req, res) {
   req.session.user = null
+  req.cookies.user = null
   res.redirect('/user/login')
 })
 
