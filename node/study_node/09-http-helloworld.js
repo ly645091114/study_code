@@ -6,8 +6,10 @@ let server = http.createServer()
 server.on('request', function (req, res) {
   let defaultUrl = './sams/dist'
   let url = req.url
-  let filePath = '/index.html'
-  if (url.indexOf('/static/') > -1) {
+  let filePath = '/'
+  if (url === '/') {
+    filePath = '/index.html'
+  } else if (url.indexOf('/index.html') === -1) {
     filePath = url
   }
   fs.readFile(`${defaultUrl}${filePath}`, function (error, data) {
