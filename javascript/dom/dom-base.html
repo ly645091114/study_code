@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>dom 基础</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <div id="xixihaha">
+      <li>meme</li>
+      <li>momo</li>
+      <li>papa</li>
+    </div>
+    <script>
+    // DOM 描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分
+    // IE 中的所有 DOM 对象都是以 COM 对象的形式实现的
+    // 这意味着 IE 中的 DOM 对象 与原生 JavaScript 对象的行为或活动特点并不一致
+    // 文档节点是每个文档的根节点，该文件文档节点只有一个子节点(<html>元素 -- 文档元素是最外层元素，文档中的其他元素都包含在文档元素中)
+    // 节点类型共有 12 种
+    // DOM1 级定义了一个 Node 接口，该接口将由 DOM 中的所有节点类型实现。JavaScript 中的所有节点类型都继承自 Node 类型， 因此所有节点类型都共享相同的基本属性和方法（nodeType）表明节点的类型
+    console.log(document)
+    var doc = document.getElementById('xixihaha')
+    // if (doc.nodeType === Node.ELEMENT_NODE) { // 该判断在 IE8 以下 浏览器无效（IE8没有node）
+    //   console.log('这是一个元素节点')
+    // }
+    if (doc.nodeType === 1) { // 首先检查节点类型，看它是不是元素。如果是，则打印 nodeName，nodeValue
+      console.log(doc.nodeName, doc.nodeValue) // nodeName 中保存的始终是元素的标签名，nodeValue的值则始终为 null
+    }
+
+    // 每一个节点都有一个 childNodes 属性，其中保存着一个 NodeList 对象（类数组对象，即虽然可以通过方括号语法访问 NodeList 的值，而且这个对象也有 length 属性，但它并不是 Array 的实例，实际是基于 DOM 结构动态执行查询的结果， 因此 DOM 结构的变化能够自动反映在 NodeList 对象中。所以说 NodeList 是有生命，有呼吸的对象，而不是第一次访问它们的某个瞬间拍下来的一张快照）
+    // 访问 NodeList 中的节点：1. 方括号；2. item()
+    console.log(doc.childNodes)
+    console.log(doc.childNodes[0]) // 换行符也算作是一个节点
+    console.log(doc.childNodes.item(1))
+    console.log(doc.childNodes.length)
+
+    // 在 IE 中将 NodeList 转换为数组，必须手动枚举所有成员
+    /**
+     * @description 将 NodeList 对象转换成数组
+     * @param { NodeList } nodes NodeList 对象
+     * @returns { Array } 转换数组
+     */
+    function convertToArray (nodes) {
+      var array = null
+      // 由于 IE8 及更早版本将 NodeList 实现为一个 COM 对象，所以想在 NodeList 转换为数组，必须手动枚举所有成员
+      try {
+        array = Array.prototype.slice.call(nodes, 0) // 针对非 IE 浏览器
+      } catch (ex) {
+        array = []
+        for (var i = 0, len = nodes.length; i < len; i ++) {
+          array.push(nodes[i])
+        }
+      }
+      return array
+    }
+    var list = convertToArray(doc.childNodes)
+    console.log(list)
+    
+    // 每一个节点都有一个 parentNode 属性，该属性指向文档树中的父节点； 包含在 childNodes 列表中的所有节点都具有相同的父节点，因此它们的 parentNode 属性都指向同一个节点；包含在 childNodes 列表中的每一个节点相互之间都是同胞节点。通过使用列表中的 previousSibling 和 nextSibling 属性 可以访问同意列表中的其他节点。列表中第一个节点的 previousSibling 属性值为 null， 列表中最后一个节点的 nextSibling 属性值为 null
+    if (doc.nextSibling === null) {
+      console.log('这是列表中的最后一个节点')
+    } else if (doc.previousSibling === null) {
+      console.log('这是列表中的第一个节点')
+    } else {
+      console.log(doc.nextSibling, doc.previousSibling)
+    }
+
+    // 父节点的 firstChild 和 lastChild 属性分别指向其 childNodes 列表中的第一个和最后一个节点。其中 firstChild 的值始终等于 childNodes[0]; lastChild 的值也始终等于 childNodes[childNodes.length - 1]。在只有一个节点的情况下，firstChild 和 lastChild 指向同一个节点。如果没有子节点，那么这两个属性都为 null
+
+    console.log(doc.ownerDocument) // 所有节点都有的属性，该属性指向表示整个文档的文档节点。这种关系表示的是任何节点都属于它所在的文档，任何节点都不能同时存在于两个或者更多个文档中，通过这个属性我们可以不必在节点层次中通过层层回溯到达顶端，而是可以直接访问文档节点。
+
+    // appendChild() 用于向 childNodes 列表的末尾添加一个节点。 添加节点后， childNodes 的新增节点、父节点以及以前的最后一个子节点的关系指针都会相应地得到更新更新完成后，appendChild() 返回新增的节点
+    console.log(doc.appendChild(doc.childNodes[1]))
+    console.log(doc.childNodes[1], doc.lastChild) // 如果传入到 appendChild() 中的节点已经是文档的一部分了，那结果就是将该节点从原来的位置转移到新的位置。即使可以将 DOM 树看成是由一系列指针连接起来的，但任何 DOM 节点也不能同时出现在文档中的多个位置上。
+
+    // insertBefore() 方法：把节点放在 childNodes 列表中某个特定的位置上；这个方法接受两个参数：要插入的节点和做为参照的节点，插入节点后被插入节点就会变成参照节点的前一个同胞节点，同时被方法返回，如果参照节点是 null， 则 insertBefore() 与 appendChild() 执行相同的操作
+    console.log(doc.insertBefore(doc.lastChild, doc.childNodes[1]))
+    console.log(doc.insertBefore(doc.childNodes[3], null))
+
+    // replaceChild() 方法：接收两个参数：1.要插入的节点；2.要替换的节点。要替换的节点将由这个方法返回并从文档树中被移除，同时由要插入的节点占据其位置
+    console.log(doc.replaceChild(doc.childNodes[1], doc.lastChild)) // 从技术上讲，被替换的节点仍然还在文档中，但它在文档中已经没有了自己的位置
+
+    // removeChild() 方法：移除节点，接受一个参数，即要移除的节点，被移除的节点将成为方法的返回值
+    console.log(doc.removeChild(doc.lastChild)) // 移除的节点仍然为文档所有，只不过在文档中已经没有了自己的位置
+    // 以上这四种方法都是某个节点的子节点，也就是说要使用这几个方法必须先取得父节点（使用 parentNode 属性）
+    // 并不是所有类型的节点都有子节点，如果在不支持子节点的节点上调用了这些方法，将会导致错误发生
+
+    // 有两个方法是所有类型节点都有的
+    // cloneNode() 方法： 用于创建调用这个方法的节点的一个完全相同的副本。cloneNode() 方法接受一个布尔值参数，表示是否执行深复制。参数为 true 的情况下，执行深复制，也就是复制节点及其整个子节点树；在参数为 false 的情况下，执行浅复制，即只复制节点本身。复制后返回的节点副本属于文档所有，但是没有为它指定父节点，需要通过 appendChild， insertBefore 或者 replaceChild 将它添加到文档中
+
+    console.log(doc.cloneNode(true))
+    console.log(doc.cloneNode(false))
+
+    // normalize 方法：处理文档树中的文本节点。由于解析器的实现或DOM操作的原因可能会出现：1. 文本节点不包含文本；2.接连出现两个文本节点的情况
+    // 当某个节点上调用这个方法时，就会在该节点的后代节点中查找上述两个情况：1.如果找到空文本节点删除它；2.如果找到两个相邻的文本节点，则将他们合并为一个文本节点。
+    console.log(doc.childNodes)
+    doc.normalize()
+    console.log(doc.childNodes)
+    </script>
+  </body>
+</html>

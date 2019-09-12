@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <title>封装ajax请求</title>
+  <body>
+    <script>
+      function ajaxMy (options) {
+        let {
+          url,
+          type,
+          data,
+          dataType,
+          success,
+          fail
+        } = options
+        type = type.toUpperCase()
+        dataType = dataType ? dataType : 'json'
+        let xhr
+        if (XMLHttpRequest) {
+          xhr = new XMLHttpRequest()
+          console.log(xhr)
+        } else {
+          xhr = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+        if (type === 'GET') {
+          let requestParams = '?'
+          for (let prop in data) {
+            if (data.hasOwnProperty(prop)) {
+              requestParams = `${requestParams}${prop}=${data[prop]}&`
+            }
+          }
+          requestParams = requestParams.slice(0, -1)
+          xhr.open('GET', `${url}${requestParams}`)
+          xhr.send(null)
+        } else if (type === 'POST') {
+          xhr.open('POST', url, true)
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-unlencoded')
+          xhr.send(data)
+        }
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              success && success(JSON.parse(xhr.responseText))
+            } else {
+              fail && fail(xhr.status)
+            }
+          }
+        }
+      }
+      ajaxMy({
+        url: '127.0.0.1',
+        type: 'get',
+        data: {id: 2},
+        dataType: 'json',
+        success: () => {
+          console.log('成功了')
+        },
+        fail: () => {
+          console.log('失败了!')
+        }
+      })
+    </script>
+  </body>
+</html>
