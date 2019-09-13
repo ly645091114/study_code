@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- 第一条注释 -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Document 类型</title>
+  </head>
+  <body>
+    <!-- IE7 的 name 特性与给定 ID 匹配的表单元素（<input>, <textarea>, <button>, <select>）也会被该方法返回 -->
+    <input type="text" name="xixihaha">
+    <div id="xixihaha">嘻嘻哈哈</div>
+    <a name="nihao"></a>
+    <a name="woshi" href="www.qq.com"></a>
+    <a href="www.qq.com"></a>
+    <img>
+    <img>
+    <ul>
+      <li>meme</li>
+      <li name="momo">momo</li>
+      <li>papa</li>
+    </ul>
+    <form></form>
+    <script>
+      document.write('Hello World')
+      // JavaScript 通过 Document 类型表示文档。在浏览器中，document 对象是 HTMLDocument（继承自 Document）的一个实例，表示整个 HTML 页面。
+      // document 对象是 window 对象的一个属性，因此可以作为一个全局对象来访问
+      // nodeType = 9；nodeName = #document；nodeValue = null；parentNode = null；ownerDocument = null
+      console.log(document)
+      // console.log(`nodeType: ${document.nodeType} nodeName: ${document.nodeName} nodeValue: ${document.nodeValue} parentNode: ${document.parentNode} ownerDocument: ${document.ownerDocument}`)
+
+      // 本文件在经过浏览器解析后，其文档中只包含两个个节点，一个 <html> 元素。可以通过 documentElement 或者 childNodes 列表来访问这个元素
+      console.log(document.documentElement, document.childNodes[0], document.lastChild)
+
+      // document 对象还有一个 body 属性，直接指向 <body> 元素
+      var body = document.body
+      console.log(body) // 所有的浏览器都支持 documentElement 和 body 属性
+
+      console.log(document.doctype) // 通常将 <!DOCTYPE> 标签看成一个与文档其他部分不同的实体，可以通过 doctype 属性来访问
+      // 浏览器对 document.doctype 的支持差别很大
+      // IE8 之前的版本：如果存在文档类型声明，会将其错误的解释为一个注释并把它当作 Comment 节点；document.doctype 的值始终为 null
+      // IE9+ 及 Firefox：如果存在文档类型生命，则将其作为文档的第一个节点；document.doctype
+
+      console.log(document.title)
+      document.title = '我改了名字'
+
+      console.log(document.URL)
+      console.log(document.domain) // 获取域名
+      console.log(document.referrer) // 获取来源页面的URL
+      // 这三个属性中只有 domain 是可以被设置的，但是不能设置为 URL 中不包含的域；而且设置只能从紧凑到松散，例如 www.qq.com 可以设置为 qq.com；不能把 qq.com 设置为 www.qq.com
+
+      // 查找元素的两个方法
+      // 1.getElementById 接收一个参数：要取得元素的 id; 找到则返回相应元素，如果不存在则返回null（严格匹配，包括大小写;IE7以及较低的版本不区分大小写）
+      console.log(document.getElementById('xixihaha'))
+      console.log(document.getElementById('XixiHAha'))
+      console.log(document.getElementById('nihao'))
+
+      // 2.getElementsByTagName() 接受一个参数：要取得元素的标签名，而返回的是包含零或多个元素的 NodeList
+      console.log(document.getElementsByTagName('li'))
+      console.log(document.getElementsByTagName('img'))
+      console.log(document.getElementsByTagName('li').namedItem('momo'))
+      console.log(document.getElementsByTagName('*')) // 获取文档所有元素
+
+      // 特殊集合
+      // document.anchors 文档中带 name 特性的 <a> 元素；
+      console.log(document.anchors)
+      // document.applets 文档中所有的 <applets> (因为不在推荐使用 <applets> 元素) 所以这个集合已经不建议使用了
+      // document.forms 包含文档中所有的 <form> 元素 与 document.getElementsByTagName('form') 相同
+      console.log(document.forms)
+      // document.images 包含文档中所有的 <img> 元素 与 document.getElementsByTagName('img') 相同
+      console.log(document.images)
+      // document.links 文档中带 href 特性的 <a> 元素；
+      console.log(document.links)
+      
+      // 在文档加载结束后在调用 document.write() 那么输出内容将会重写整个页面
+      // window.onload = function () {
+      //   document.write('Hellow World!')
+      // }
+
+      var myDiv = document.getElementById('xixihaha')
+      console.log(myDiv.nodeName, myDiv.tagName) // 这两个属性都能访问标签名
+      console.log(myDiv.nodeName === myDiv.tagName)
+
+      myDiv.className = 'xiha'
+      myDiv.title = 'wen ben'
+
+      // 加载外部脚本封装方法
+      function loadScript (url) {
+        var script = document.createElement('script')
+        script.type = 'text/javascript'
+        script.src = url
+        document.body.appendChild(script)
+      }
+
+      // 加载外部样式封装方法
+      function loadStyle (url) {
+        var link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.type = 'text/css'
+        link.href = url
+        var head = document.getElementsByTagName('head')[0]
+        head.appendChild(link)
+      }
+
+      console.log(myDiv.classList)
+      myDiv.classList.add('meme')
+      myDiv.classList.remove('xiha')
+      console.log(myDiv.classList)
+      console.log(myDiv.classList.toggle('meme'))
+      console.log(myDiv.classList)
+
+      console.log(document.activeElement)
+      console.log(document.readyState)
+      window.onload = function () {
+        console.log(document.activeElement)
+        console.log(document.readyState)
+      }
+      console.log(document.hasFocus())
+    </script>
+  </body>
+</html>
+<!-- 第二条注释 -->
