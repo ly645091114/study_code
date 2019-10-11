@@ -93,6 +93,7 @@
       - `algorithm.js` 高级算法
       - `carray.js` 数组测试类
       - `index.js` 排序功能测试
+  - `reg_exp` 正则相关
   - `ES6`
     - `base` 基础篇
       - `let.js` let 与 var 的区别

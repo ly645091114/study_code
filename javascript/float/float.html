@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>清除浮动</title>
+    <meta charset="utf-8">
+    <style rel="stylesheet" type="text/css">
+      .float {
+        float: left;
+      }
+      span {
+        margin-left: 10px;
+      }
+      .clearfix {
+        display: inline-block;
+      }
+      .clearfix:after {
+        content: '.';
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+      }
+      .xixihaha {
+        width: 100%;
+        height: 200px;
+        position: relative;
+      }
+      .xixihaha:after {
+        content: '';
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span>前面的元素</span>
+      <span class="float">浮动的元素</span>
+    </div>
+    <div class="clearfix">
+      <span class="float">浮动的元素</span>
+    </div>
+    <div class="clearfix">
+      <span>前面的元素</span>
+      <span class="float">浮动的元素</span>
+    </div>
+    <div class="xixihaha"></div>
+  </body>
+</html>
