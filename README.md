@@ -93,11 +93,13 @@
       - `algorithm.js` 高级算法
       - `carray.js` 数组测试类
       - `index.js` 排序功能测试
+  - `javascript` 语言相关
+    - `promise` Promise 实现
+  - `node`
   - `reg_exp` 正则相关
   - `ES6`
     - `base` 基础篇
       - `let.js` let 与 var 的区别
-  - `node`
   - `README.md`
 
 ## 执行文件
