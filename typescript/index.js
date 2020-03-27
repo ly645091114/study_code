@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 /**
  * 布尔值
  * 最基本的数据类型就是简单的true/false值，在JavaScript和TypeScript里叫做boolean（其它语言中也一样）。
@@ -133,3 +144,66 @@ var a = o.a, b = o.b;
 function keepWholeObject(wholeObject) {
     var a = wholeObject.a, _a = wholeObject.b, b = _a === void 0 ? 1001 : _a;
 }
+function f(_a) {
+    var a = _a.a, b = _a.b;
+    // ...
+} // 小心使用解构，就算是最简单的解构表达式也是难以理解的。尤其当存在深层嵌套解构的时候，就算这时没有堆叠在一起的重命名，默认值和类型注解，也是令人难以理解的。解构表达式要尽量小而简单。你自己也可以直接使用解构将会生成的赋值表达式。
+/**
+ * 展开
+ * 展开操作符正与解构相反。它允许你将一个数组展开为另一个数组，或将一个对象展开为另一个对象
+ */
+var frist = [1, 2];
+var second = [3, 4];
+var bothPlus = [0].concat(frist, second, [5]);
+// 这会令bothPlus的值为[0, 1, 2, 3, 4, 5]。 展开操作创建了 first和second的一份浅拷贝。 它们不会被展开操作所改变。
+var defaults = { food: "spicy", price: "$$", ambiance: "noisy" }; // 还可以展开对象
+var search = __assign({}, defaults, { food: "rich" });
+// search的值为{ food: "rich", price: "$$", ambiance: "noisy" }。 对象的展开比数组的展开要复杂的多。 像数组展开一样，它是从左至右进行处理，但结果仍为对象。 这就意味着出现在展开对象后面的属性会覆盖前面的属性。 因此，如果我们修改上面的例子，在结尾处进行展开的话：
+defaults = { food: "spicy", price: "$$", ambiance: "noisy" };
+search = __assign({ food: "rich" }, defaults);
+// 那么，defaults里的food属性会重写food: "rich"，在这里这并不是我们想要的结果。
+// 对象展开还有其它一些意想不到的限制。 首先，它仅包含对象 自身的可枚举属性。 大体上是说当你展开一个对象实例时，你会丢失其方法：
+var D = /** @class */ (function () {
+    function D() {
+        this.p = 12;
+    }
+    D.prototype.m = function () {
+    };
+    return D;
+}());
+var g = new D();
+var clone = __assign({}, g);
+clone.p; // ok
+// clone.m() // error!
+// 其次，TypeScript编译器不允许展开泛型函数上的类型参数。 这个特性会在TypeScript的未来版本中考虑实现。
+/**
+ * 接口初探
+ */
+function printLabel(labelledObj) {
+    console.log(labelledObj.label);
+}
+var myObj = { size: 10, label: 'size 10 Object' };
+printLabel(myObj);
+function printLabel1(labelledObj) {
+    console.log(labelledObj.label);
+}
+var myObj1 = { size: 10, label: 'size 10 Object' };
+printLabel1(myObj1);
+function createSquare(config) {
+    var newSquare = { color: 'white', area: 100 };
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+}
+var mySquare = createSquare({ color: 'black' });
+var p1 = { x: 10, y: 20 };
+// p1.x = 5 // error!
+// TypeScript 具有 ReadonlyArray<T> 类型，它与 Array<T> 相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改
+var t = [1, 2, 3, 4];
+var ro = t;
+// ro[0] = 12 // error
+// ro.push(5) // error

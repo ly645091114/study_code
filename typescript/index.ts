@@ -173,3 +173,160 @@ type C = { a:string, b?:number }
 function f({ a, b }: C): void {
   // ...
 } // 小心使用解构，就算是最简单的解构表达式也是难以理解的。尤其当存在深层嵌套解构的时候，就算这时没有堆叠在一起的重命名，默认值和类型注解，也是令人难以理解的。解构表达式要尽量小而简单。你自己也可以直接使用解构将会生成的赋值表达式。
+
+/**
+ * 展开
+ * 展开操作符正与解构相反。它允许你将一个数组展开为另一个数组，或将一个对象展开为另一个对象
+ */
+let frist = [1, 2]
+let second = [3, 4]
+let bothPlus = [0, ...frist, ...second, 5]
+
+// 这会令bothPlus的值为[0, 1, 2, 3, 4, 5]。 展开操作创建了 first和second的一份浅拷贝。 它们不会被展开操作所改变。
+
+let defaults = { food: "spicy", price: "$$", ambiance: "noisy" } // 还可以展开对象
+let search = { ...defaults, food: "rich" }
+
+// search的值为{ food: "rich", price: "$$", ambiance: "noisy" }。 对象的展开比数组的展开要复杂的多。 像数组展开一样，它是从左至右进行处理，但结果仍为对象。 这就意味着出现在展开对象后面的属性会覆盖前面的属性。 因此，如果我们修改上面的例子，在结尾处进行展开的话：
+
+defaults = { food: "spicy", price: "$$", ambiance: "noisy" }
+search = { food: "rich", ...defaults }
+
+// 那么，defaults里的food属性会重写food: "rich"，在这里这并不是我们想要的结果。
+
+// 对象展开还有其它一些意想不到的限制。 首先，它仅包含对象 自身的可枚举属性。 大体上是说当你展开一个对象实例时，你会丢失其方法：
+
+class D {
+  p = 12
+  m() {
+  }
+}
+let g = new D()
+let clone = { ...g }
+clone.p // ok
+// clone.m() // error!
+
+// 其次，TypeScript编译器不允许展开泛型函数上的类型参数。 这个特性会在TypeScript的未来版本中考虑实现。
+
+/**
+ * 接口初探
+ */
+function printLabel (labelledObj: { label: string }) {
+  console.log(labelledObj.label)
+}
+
+let myObj = { size: 10, label: 'size 10 Object' }
+printLabel(myObj)
+
+// 类型检查器会查看 printLabel 的调用。printLabel 有一个参数，并要求这个对象参数有一个名为 label 类型为 string 的属性。需要注意的是，我们传入对象参数实际上会包含很多属性，但是编译器只会检查那些必需的属性是否存在，并且其类型是否匹配。然而，有些时候 TypeScript 却并不会这么宽松
+
+// 使用接口来描述：必须包含一个 label 属性且类型为 string：
+
+interface LabelledValue {
+  label: string
+}
+
+function printLabel1 (labelledObj: LabelledValue) {
+  console.log(labelledObj.label)
+}
+
+let myObj1 = { size: 10, label: 'size 10 Object' }
+printLabel1(myObj1)
+
+// LabelledValue 接口就好比一个名字，用来描述上面例子里的要求。它代表了有一个 label 属性且类型为 string 的对象。需要注意的是，我们在这里并不能像在其他语言里一样，说传给 printLabel 的对象实现了这个接口。我们只会去关注值的外形。只要传入的对象满足上面提到的必要条件，那么它就是被允许的。还有一点值得一提的是，类型检查器不会去检查属性得顺序，只要相应得属性存在并且类型也是对的就可以的。
+
+/**
+ * 可选属性
+ * 接口里的属性不全都是必需的。有些是只在某些条件下存在，或者根本不存在。可选属性在应用 "option bags"模式时很常用，即给函数传入的参数对象中只有部分属性赋值了。
+ */
+
+interface SquareConfig {
+  color?: string
+  width?: number
+}
+
+function createSquare(config: SquareConfig) {
+  let newSquare = { color: 'white', area: 100 }
+  if (config.color) {
+    newSquare.color = config.color
+  }
+  if (config.width) {
+    newSquare.area = config.width * config.width
+  }
+  return newSquare
+}
+
+let mySquare = createSquare({ color: 'black' })
+
+/**
+ * 只读属性
+ * 一些对象属性只能在对象刚刚创建的时候修改其值。可以在属性名前用 readonly 来指定只读属性
+ */
+interface Point {
+  readonly x: number
+  readonly y: number
+}
+
+let p1: Point = { x: 10, y: 20 }
+// p1.x = 5 // error!
+
+// TypeScript 具有 ReadonlyArray<T> 类型，它与 Array<T> 相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改
+
+let t: number[] = [1, 2, 3, 4]
+let ro: ReadonlyArray<number> = t
+// ro[0] = 12 // error
+// ro.push(5) // error
+// ro.length = 100 // error
+// a = ro // error
+
+// 上面代码的最后一行，可以看到就算把整个 ReadonlyArray 赋值到一个普通数组也是不可以的。但是你可以用类型断言重写
+t = ro as number[]
+
+/**
+ * readonly VS const
+ * 最简单判断该用 readonly 还是 const 的方法是看要把它作为变量还是作为一个属性。做为变量使用的话用 const，若作为属性则使用 readonly
+ */
+
+/**
+ * 额外的属性检查
+ * 我们在第一个例子里使用了接口，TypeScript 让我们传入 { size: number; label: string } 到仅期望得到 { label: string } 的函数里。我们已经学过了可选属性，并且知道他们 "option bags" 模式里很有用。
+ * 然而，天真地将这两者结合的话就会像在 JavaScript 里那样搬起石头砸自己地脚
+ */
+
+function createSquare1(config: SquareConfig) {
+  let newSquare = { color: 'white', area: 100 }
+  if (config.color) {
+    newSquare.color = config.color
+  }
+  if (config.width) {
+    newSquare.area = config.width * config.width
+  }
+  return newSquare
+}
+
+// let mySquare1 = createSquare1({ colour: "red", width: 100 }) // error: 'colour' not expected in type 'SquareConfig'
+
+/**
+ * 此处传入的参数拼写为 colour 而不是 color。在 JavaScript 里，这里会失败。
+ * 你可能会争辩这个程序已经正确的类型化了，因为 width 属性是兼容，不存在 color 属性，而且额外的 colour 属性是毫无意义的
+ * 然而，TypeScript 会认为这段代码可能存在 bug。对象字面量会被特殊对待而且会经过 额外属性检查，当将它们赋值给变量或作为参数传递时候。如果一个对象字面量存在任何 "目标类型" 不包含的属性时，你会得到一个错误
+ * 绕开这些检查非常简单。最简便的方法是使用类型断言
+ */
+
+let mySquare1 = createSquare1({ width: 100, opacity: 0.5 } as SquareConfig)
+
+ // 然而，最佳的方式是能够添加一个字符串索引签名，前提是你能够确定这个对象可能具有某些做为特殊用途使用的额外属性。如果 SquareConfig 带有上面定义的类型的 color 和 width 属性，并且还会带有任意数量的其他属性，那么我们可以这样定义它
+
+interface SquareConfig2 {
+  color?: string
+  width?: number
+  [propName: string]: any
+}
+
+// 这里表示的是 SquareConfig2 可以有任意数量的属性，并且只要他们不是 color 和 width，那么就无所谓他们的类型是什么
+
+// 最后一种跳过检查的方式，就是将这个对象赋值给另一个变量；因为 squareOptions 不会经过额外的属性检查，所以编译器不会报错。
+let squareOptions = { colour: 'red', width: 100 }
+let mySquare2 = createSquare1(squareOptions)
+
+// 要留意，在像上面一样的简单代码里，你可能不应该去绕开这些检查。对于包含方法和内部状态的复杂对象字面量来讲，可能需要使用一些技巧
